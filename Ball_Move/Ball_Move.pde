@@ -49,10 +49,17 @@ class Ball extends Thing implements Moveable {
     /* ONE PERSON WRITE THIS */
     //random movement
     if(this.x < (width - 25) && this.x > 25) //the edges I will edit later
-    this.x += ((int)(random(0,2))) * 2 - 1;
+    this.x += (int)(random(-1,2));
     if(this.y < (height - 25) && this.y > 25) //the edges I will edit later
-    this.y += ((int)(random(0,2))) * 2 - 1;
-  }
+    this.y += (int)(random(-1,2));
+    //random straight path in the N,NE,E,SE,S,SW,W,NW directions
+    int widthIncrement = (int)(random(-1,2));
+    int heightIncrement = (int)(random(-1,2));//does not account for both increments being 0
+    for(;(this.x < (width - 25) && this.x > 25) && 
+    (this.y < (height - 25) && this.y > 25); this.x += widthIncrement,this.y += heightIncrement)
+    {
+      
+    }
 }
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
