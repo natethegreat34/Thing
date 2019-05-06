@@ -22,7 +22,7 @@ class Rock extends Thing {
   void display() { 
     /* ONE PERSON WRITE THIS */
     fill(165);
-    rect(x,y,50.0,50.0);
+    circle(x,y,50);
   }
 }
 
@@ -31,14 +31,7 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    double yincrement = Math.random();
-    double xincrement = Math.random();
     /* ONE PERSON WRITE THIS */
-    if(x+xincrement<=width && y+yincrement<=height){
-      x+=xincrement;
-      y+=yincrement;
-    }
-      
   }
 }
 
@@ -54,6 +47,11 @@ class Ball extends Thing implements Moveable {
 
   void move() {
     /* ONE PERSON WRITE THIS */
+    //random movement
+    if(this.x < (width - 25) && this.x > 25) //the edges I will edit later
+    this.x += ((int)(random(0,2))) * 2 - 1;
+    if(this.y < (height - 25) && this.y > 25) //the edges I will edit later
+    this.y += ((int)(random(0,2))) * 2 - 1;
   }
 }
 ArrayList<Displayable> thingsToDisplay;
