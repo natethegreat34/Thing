@@ -20,7 +20,7 @@ class Rock extends Thing {
   }
 
   void display() { 
-    /* ONE PERSON WRITE THIS */
+    image(img, x, y, 50, 50);
   }
 }
 
@@ -46,8 +46,8 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
-    image(img, x, y, 50, 50);
-    /* ONE PERSON WRITE THIS */
+    fill(255, 0, 0);
+    ellipse(x, y, 50, 50);
   }
 
   void move() {
