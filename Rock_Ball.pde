@@ -1,4 +1,3 @@
-
 interface Displayable {
   void display();
 }
@@ -39,9 +38,9 @@ public class LivingRock extends Rock implements Moveable {
     double yincrement = Math.random();
     double xincrement = Math.random();
     /* ONE PERSON WRITE THIS */
-    if (x+xincrement<=width && y+yincrement<=height) {
-      x+= 80 *xincrement;
-      y+= 90 *yincrement;
+    if (x+xincrement<=width-25 && y+yincrement<=height-25) {
+      x+=xincrement;
+      y+=yincrement;
     }
   }
 }
