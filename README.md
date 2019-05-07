@@ -7,3 +7,4 @@ Derek worked on Ball move.
 Chong worked on Ball display.
 
 5/7/19
+Chong and Derek worked on the Ball methods and tried to make it stay in boundary, still working on it.
