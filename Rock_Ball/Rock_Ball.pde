@@ -21,6 +21,7 @@ class Rock extends Thing {
 
   void display() { 
     /* ONE PERSON WRITE THIS */
+    img = loadImage("canva-amethyst-crystal-stone-on-white-MACCXvloiOc.png");
     image(img, x, y, 50, 50);
   }
 }
@@ -71,8 +72,9 @@ class Ball extends Thing implements Moveable {
     }
     this.x += widthIncrement;
     this.y += heightIncrement;
-    if ((this.x < (width - 25) || this.x > 25) || (this.y < (height - 25) || this.y > 25); 
-    this.x += widthIncrement, this.y += heightIncrement)
+    if ((this.x < (width - 25) || this.x > 25) || (this.y < (height - 25) || this.y > 25)); 
+    this.x += widthIncrement;
+    this.y += heightIncrement;
     {
       this.x -= 2 * (widthIncrement);
       this.y -= 2 * (heightIncrement);
