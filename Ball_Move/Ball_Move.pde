@@ -48,17 +48,27 @@ class Ball extends Thing implements Moveable {
   void move() {
     /* ONE PERSON WRITE THIS */
     //random movement
-    if(this.x < (width - 25) && this.x > 25) //the edges I will edit later
-    this.x += (int)(random(-1,2));
-    if(this.y < (height - 25) && this.y > 25) //the edges I will edit later
-    this.y += (int)(random(-1,2));
+    //if(this.x < (width - 25) && this.x > 25) //the edges I will edit later
+    //this.x += (int)(random(-1,2));
+    //if(this.y < (height - 25) && this.y > 25) //the edges I will edit later
+    //this.y += (int)(random(-1,2));
     //random straight path in the N,NE,E,SE,S,SW,W,NW directions
     int widthIncrement = (int)(random(-1,2));
     int heightIncrement = (int)(random(-1,2));//does not account for both increments being 0
-    for(;(this.x < (width - 25) && this.x > 25) && 
-    (this.y < (height - 25) && this.y > 25); this.x += widthIncrement,this.y += heightIncrement)
+    if(widthIncrement == 0 && heightIncrement == 0)
     {
-      
+      int selector = (int)random(0,1);
+      if(selector == 0)
+      widthIncrement = (int)(random(0,1)) * 2 - 1;
+      else
+      heightIncrement = (int)(random(0,1)) * 2 - 1;
+    }
+    this.x += widthIncrement;
+    this.y += heightIncrement;
+    if((this.x < (width - 25) || this.x > 25) || (this.y < (height - 25) || this.y > 25); this.x += widthIncrement,this.y += heightIncrement)
+    {
+      this.x -= 2 * (widthIncrement);
+      this.y -= 2 * (heightIncrement);
     }
 }
 ArrayList<Displayable> thingsToDisplay;
