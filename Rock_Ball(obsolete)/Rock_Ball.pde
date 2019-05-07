@@ -20,7 +20,9 @@ class Rock extends Thing {
   }
 
   void display() { 
-    image(img, x, y, 50, 50);
+    /* ONE PERSON WRITE THIS */
+    fill(165);
+    ellipse(x, y, 50, 50);
   }
 }
 
@@ -29,13 +31,7 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    double yincrement = Math.random();
-    double xincrement = Math.random();
     /* ONE PERSON WRITE THIS */
-    if (x+xincrement<=width && y+yincrement<=height) {
-      x+= 80 *xincrement;
-      y+= 90 *yincrement;
-    }
   }
 }
 
@@ -51,20 +47,13 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    double yincrement = Math.random();
-    double xincrement = Math.random();
     /* ONE PERSON WRITE THIS */
-    if (x+xincrement<=width && y+yincrement<=height) {
-      x+=xincrement;
-      y+=yincrement;
-    }
   }
 }
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
-PImage img;
+
 void setup() {
-  img = loadImage("canva-amethyst-crystal-stone-on-white-MACCXvloiOc.png");
   size(1000, 800);
 
   thingsToDisplay = new ArrayList<Displayable>();
@@ -84,6 +73,7 @@ void setup() {
 
 void draw() {
   background(255);
+
   for (Displayable thing : thingsToDisplay) {
     thing.display();
   }
