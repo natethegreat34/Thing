@@ -60,8 +60,8 @@ class Ball extends Thing implements Moveable {
     //if(this.y < (height - 25) && this.y > 25) //the edges I will edit later
     //this.y += (int)(random(-1,2));
     //random straight path in the N,NE,E,SE,S,SW,W,NW directions
-    int widthIncrement = (int)(random(0, 3)) * 5 - 10;
-    int heightIncrement = (int)(random(0, 3)) * 5 - 10;//does not account for both increments being 0
+    int widthIncrement = (int)(random(0, 3)) * 5 - 5;
+    int heightIncrement = (int)(random(0, 3)) * 5 - 5;//does not account for both increments being 0
     //if (widthIncrement == 0 && heightIncrement == 0)
     //{
     //  int selector = (int)random(0, 1);
@@ -70,8 +70,8 @@ class Ball extends Thing implements Moveable {
     //  else
     //    heightIncrement = (int)(random(0, 1)) * 10 - 5;
     //}
-    if ((this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25) ||
-    (this.y + heightIncrement  > (height - 25) || this.y + heightIncrement < 25))
+    if (this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25 ||
+    this.y + heightIncrement  > (height - 25) || this.y + heightIncrement < 25)
     {
       this.x -= (widthIncrement);
       this.y -= (heightIncrement);
