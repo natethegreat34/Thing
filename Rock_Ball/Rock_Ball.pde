@@ -71,8 +71,8 @@ class Ball extends Thing implements Moveable {
     }
     this.x += widthIncrement;
     this.y += heightIncrement;
-    if ((this.x < (width - 25) || this.x > 25) || (this.y < (height - 25) || this.y > 25); 
-    this.x += widthIncrement, this.y += heightIncrement)
+    if ((this.x < (width - 25) || this.x > 25) || (this.y < (height - 25) || this.y > 25)); 
+;
     {
       this.x -= 2 * (widthIncrement);
       this.y -= 2 * (heightIncrement);
