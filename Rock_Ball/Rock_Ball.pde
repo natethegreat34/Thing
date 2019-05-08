@@ -108,7 +108,7 @@ class Ball extends Thing implements Moveable, Collideable {
   boolean isTouching(Thing other) {
     if (other instanceof Rock)
     {
-      if ((this.x >= other.x - 25 && this.x <= other.x + 75) && (this.y >= other.y - 25 && this.y <= other.y + 75)
+      if ((this.x >= other.x - 25 && this.x <= other.x + 75) && (this.y >= other.y - 25 && this.y <= other.y + 75))
         return true;
       else
         return false;
@@ -160,23 +160,23 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-  for (int i = 0 ; i < listOfCollideables.size() ; i ++) 
-  {
-    if (listOfCollideables.get(i) instanceof Ball) {
-      for (Collideable d : listOfCollideables)
-      {
-        if (d instanceof Rock) {
-          if (listOfCollideables.get(i).isTouching(d))
-          {
-            Rock r = ((Rock)listOfCollideables.get(i))
-            r.touchingRock = true;
-          } else
-          {
-            listOfCollideables.get(i).touchingRock = false;
-          }
-        }
-      }
-    }
-  }
+  //for (int i = 0 ; i < listOfCollideables.size() ; i ++) 
+  //{
+  //  if (listOfCollideables.get(i) instanceof Ball) {
+  //    for (Collideable d : listOfCollideables)
+  //    {
+  //      if (d instanceof Rock) {
+  //        if (listOfCollideables.get(i).isTouching(d))
+  //        {
+  //          Rock r = ((Rock)listOfCollideables.get(i));
+  //          r.touchingRock = true;
+  //        } else
+  //        {
+  //          listOfCollideables.get(i).touchingRock = false;
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
 }
      
