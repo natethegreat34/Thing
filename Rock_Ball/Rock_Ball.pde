@@ -62,20 +62,11 @@ public class LivingRock extends Rock implements Moveable {
   void move() {
     double yincrement = random(-5, 5);
     double xincrement = random(-5, 5);
+    /* ONE PERSON WRITE THIS */
     if (x+xincrement<=width-25 && y+yincrement<=height-25) {
       x+=xincrement;
       y+=yincrement;
     }
-  }
-  
-  void display(){
-    super.display();
-    fill(255,255,255);
-    ellipse(x,y,34,30);
-    ellipse(x+35,y,34,30);
-    fill(0,0,0);
-    ellipse(x,y,10,10);
-    ellipse(x+35,y,10,10);
   }
 }
 
@@ -87,10 +78,11 @@ class Ball extends Thing implements Moveable, Collideable {
   boolean touchingRock = false;
 
   void display() {
+    PShape s = createShape(ELLIPSE, x, y, 50, 50);
     if (!touchingRock)
     { 
       fill(255, 0, 0);
-      ellipse(x, y, 50, 50);
+      shape(s);
     } else
     {
       fill(0, 255, 0);
