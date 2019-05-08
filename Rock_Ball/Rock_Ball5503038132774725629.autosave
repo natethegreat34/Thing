@@ -60,12 +60,12 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    double yincrement = random(-5, 5);
-    double xincrement = random(-5, 5);
+    double yincrement = random(-5,5);
+    double xincrement = random(-5,5);
     /* ONE PERSON WRITE THIS */
-    if (x+xincrement<=width-25 && y+yincrement<=height-25) {
-      x+=xincrement;
-      y+=yincrement;
+    if (x+xincrement<=width && y+yincrement<=height) {
+      x+= 80 *xincrement;
+      y+= 90 *yincrement;
     }
   }
 }
@@ -104,6 +104,16 @@ class Ball extends Thing implements Moveable, Collideable {
       this.y += heightIncrement;
     }
   }
+  //void move() {
+  //  double yincrement = Math.random();
+  //  double xincrement = Math.random();
+  //  /* ONE PERSON WRITE THIS */
+  //  if (x+xincrement<=width && y+yincrement<=height) {
+  //    x+=xincrement;
+  //    y+=yincrement;
+  //  }
+  //}
+
 
   boolean isTouching(Thing other) {
     if (other instanceof Rock)
@@ -139,21 +149,15 @@ class Ball extends Thing implements Moveable, Collideable {
 //  }
 //}
 
-boolean su;
+
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
 ArrayList<Collideable> listOfCollideables;
 PImage img;
-PImage lmg;
 void setup() {
   img = loadImage("canva-amethyst-crystal-stone-on-white-MACCXvloiOc.png");
-  lmg = loadImage("kisspng-igneous-rock-obsidian-mineral-crystal-obsidian-5b33624d348da5.3793704415300941572153.jpg");
   size(1000, 800);
-  double q = Math.random() * 2;
-  System.out.println(q);
-  if (q < 1) {
-    su = true;
-  }
+
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   listOfCollideables = new ArrayList<Collideable>();
