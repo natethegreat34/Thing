@@ -35,24 +35,20 @@ class Rock extends Thing implements Collideable {
       if ((this.x <= other.x + 50 && this.x >= other.x - 50) && (this.y <= other.y + 50 && this.y >= other.y - 50))
       {
         return true;
-      }
-      else
+      } else
       {
         return false;
       }
-    }
-    else if (other instanceof Ball)
+    } else if (other instanceof Ball)
     {
       if ((this.x <= other.x + 25 && this.x >= other.x - 75) && (this.y <= other.y + 25 && this.y >= other.y - 75))
       {
         return true;
-      }
-      else
+      } else
       {
         return false;
       }
-    }
-    else
+    } else
     {
       return false; // that means the "Thing" was something that was not a ball nor a rock
     }
@@ -74,7 +70,7 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable,Collideable {
+class Ball extends Thing implements Moveable, Collideable {
   Ball(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
@@ -101,23 +97,21 @@ class Ball extends Thing implements Moveable,Collideable {
       this.y += heightIncrement;
     }
   }
-  
-  boolean isTouching(Thing other){
-    if(other instanceof Rock)
+
+  boolean isTouching(Thing other) {
+    if (other instanceof Rock)
     {
-      if((this.x >= other.x - 25 && this.x <= other.x + 75) && (this.y >= other.y - 25 && this.y <= other.y + 75)
+      if ((this.x >= other.x - 25 && this.x <= other.x + 75) && (this.y >= other.y - 25 && this.y <= other.y + 75)
+        return true;
+      else
+        return false;
+    } else if (other instanceof Ball)
+    {
+      if ((this.x >= other.x - 50 && this.x <= other.y + 50) && (this.y >= other.y - 50 && this.y <= other.y + 50))
       return true;
       else
-      return false;
-    }
-    else if(other instanceof Ball)
-    {
-      if((this.x >= other.x - 50 && this.x <= other.y + 50) && (this.y >= other.y - 50 && this.y <= other.y + 50))
-      return true;
-      else
-      return false;
-    }
-    else
+        return false;
+    } else
     {
       return false;//this means Thing was a class other than Ball or Rock
     }
@@ -127,7 +121,7 @@ class Ball extends Thing implements Moveable,Collideable {
 
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
-ArrayList<Collideable> ListOfCollideables;
+ArrayList<Collideable> listOfCollideables;
 PImage img;
 void setup() {
   img = loadImage("canva-amethyst-crystal-stone-on-white-MACCXvloiOc.png");
@@ -135,10 +129,12 @@ void setup() {
 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
+  listOfCollideables = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
+    listOfCollideables.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
   }
@@ -146,6 +142,7 @@ void setup() {
   LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
   thingsToDisplay.add(m);
   thingsToMove.add(m);
+  listOfCollideables.add(m);
 }
 
 void draw() {
