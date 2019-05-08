@@ -26,9 +26,6 @@ class Rock extends Thing {
     else{
     image(lmg,x,y,50,50);
     }
-    fill(0,0,0);
-    ellipse(x,y,25,25);
-    ellipse(x+35,y,25,25);
   }
 }
 
@@ -46,6 +43,22 @@ public class LivingRock extends Rock implements Moveable {
       y+=yincrement;
     }
   }
+  
+  void display(){
+    if (su){
+    image(img, x, y, 50, 50);
+    }
+    else{
+    image(lmg,x,y,50,50);
+    }
+    fill(255,255,255);
+    ellipse(x,y,34,30);
+    ellipse(x+35,y,34,30);
+    fill(0,0,0);
+    ellipse(x,y,10,10);
+    ellipse(x+35,y,10,10);
+  }
+  
 }
 
 class Ball extends Thing implements Moveable {
