@@ -35,8 +35,8 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    double yincrement = Math.random();
-    double xincrement = Math.random();
+    double yincrement = random(-5,5);
+    double xincrement = random(-5,5);
     /* ONE PERSON WRITE THIS */
     if (x+xincrement<=width-25 && y+yincrement<=height-25) {
       x+=xincrement;
@@ -57,13 +57,6 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    double yincrement = Math.random();
-    double xincrement = Math.random();
-    /* ONE PERSON WRITE THIS */
-    if (x+xincrement<=width && y+yincrement<=height) {
-      x+=xincrement;
-      y+=yincrement;
-    }
   }
 }
 boolean su;
