@@ -1,3 +1,4 @@
+boolean su;
 interface Displayable {
   void display();
 }
@@ -15,34 +16,25 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  Rock(float x, float y) {
+  PImage lol;
+  Rock(float x, float y, PImage lo) {
     super(x, y);
+    lol = lo;
   }
 
-  void display() { 
-    if (su){
-    image(img, x, y, 50, 50);
-    }
-    else{
-    image(lmg,x,y,50,50);
-    }
-    fill(255,255,255);
-    ellipse(x,y,34,30);
-    ellipse(x+35,y,34,30);
-    fill(0,0,0);
-    ellipse(x,y,10,10);
-    ellipse(x+35,y,10,10);
-  }
+  
+void display(){
+  image(lol,x,y,50,50);
 }
-
+}
 
 public class LivingRock extends Rock implements Moveable {
   LivingRock(float x, float y) {
-    super(x, y);
+    super(x, y, img);
   }
   void move() {
-    double yincrement = random(-5,5);
-    double xincrement = random(-5,5);
+    double yincrement = Math.random();
+    double xincrement = Math.random();
     /* ONE PERSON WRITE THIS */
     if (x+xincrement<=width-25 && y+yincrement<=height-25) {
       x+=xincrement;
@@ -63,9 +55,16 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
+    double yincrement = Math.random();
+    double xincrement = Math.random();
+    /* ONE PERSON WRITE THIS */
+    if (x+xincrement<=width && y+yincrement<=height) {
+      x+=xincrement;
+      y+=yincrement;
+    }
   }
 }
-boolean su;
+
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
 PImage img;
@@ -74,26 +73,26 @@ void setup() {
   img = loadImage("canva-amethyst-crystal-stone-on-white-MACCXvloiOc.png");
   lmg = loadImage("kisspng-igneous-rock-obsidian-mineral-crystal-obsidian-5b33624d348da5.3793704415300941572153.jpg");
   size(1000, 800);
-    double q = Math.random() * 2;
-  System.out.println(q);
-    if (q < 1){
-      su = true;
-    }
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    Rock r = new Rock(50+random(width-100), 50+random(height-100));
+    double t = Math.random() * 2;
+    Rock r;
+    if (t > 1){
+    r = new Rock(50+random(width-100), 50+random(height-100), img);
+    }
+    else{
+       r = new Rock(50+random(width-100), 50+random(height-100), lmg);
+     }
     thingsToDisplay.add(r);
   }
-
   LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
   thingsToDisplay.add(m);
   thingsToMove.add(m);
 }
-
 void draw() {
   background(255);
   for (Displayable thing : thingsToDisplay) {
