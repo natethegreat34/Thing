@@ -76,7 +76,7 @@ class Ball extends Thing implements Moveable, Collideable {
     super(x, y);
   }
   boolean touchingRock = false;
-  
+
   void display() {
     if (!touchingRock)
     { 
@@ -115,7 +115,7 @@ class Ball extends Thing implements Moveable, Collideable {
     } else if (other instanceof Ball)
     {
       if ((this.x >= other.x - 50 && this.x <= other.y + 50) && (this.y >= other.y - 50 && this.y <= other.y + 50))
-      return true;
+        return true;
       else
         return false;
     } else
@@ -124,6 +124,20 @@ class Ball extends Thing implements Moveable, Collideable {
     }
   }
 }
+
+//class BallOne extends Ball {
+//  Ball(float x, float y) {
+//    //x and y coordinates are the center of the ball
+//    super(x, y);
+//  }
+//}
+
+//class BallTwo extends Ball {
+//  Ball(float x, float y) {
+//    //x and y coordinates are the center of the ball
+//    super(x, y);
+//  }
+//}
 
 
 ArrayList<Displayable> thingsToDisplay;
@@ -179,4 +193,3 @@ void draw() {
   //  }
   //}
 }
-     
