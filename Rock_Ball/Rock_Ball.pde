@@ -96,7 +96,7 @@ class Ball extends Thing implements Moveable, Collideable {
     } else
     {
       fill(0, 255, 0);
-      ellipse(x, y, 50, 50);
+      shape(s);
     }
   }
   void move() {
