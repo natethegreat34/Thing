@@ -12,3 +12,4 @@ Afternoon: Derek has successfully made Ball stay in boundary.
 
 5/8/19
 Early Morning: Derek added the Collideable interface, but due to the nature of the display method in Ball and Derek's lack of computer science experience/lack of knowledge of java/lack of will to dig deeply to learn completely how processing3 works, he has saved this part for the next day.
+James : added eyes to the living rock
