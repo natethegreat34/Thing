@@ -25,8 +25,11 @@ class Rock extends Thing {
     }
     else{
     image(lmg,x,y,50,50);
+    }
+    fill(0,0,0);
+    ellipse(x,y,25,25);
+    ellipse(x+35,y,25,25);
   }
-}
 }
 
 
