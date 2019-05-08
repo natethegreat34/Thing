@@ -75,12 +75,19 @@ class Ball extends Thing implements Moveable, Collideable {
     //x and y coordinates are the center of the ball
     super(x, y);
   }
-
+  boolean touchingRock = false;
+  
   void display() {
-    fill(255, 0, 0);
-    ellipse(x, y, 50, 50);
+    if (!touchingRock)
+    { 
+      fill(255, 0, 0);
+      ellipse(x, y, 50, 50);
+    } else
+    {
+      fill(0, 255, 0);
+      ellipse(x, y, 50, 50);
+    }
   }
-
   void move() {
     /* ONE PERSON WRITE THIS */
     int widthIncrement = (int)(random(0, 3)) * 5 - 5;
@@ -153,4 +160,23 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
+  for (int i = 0 ; i < listOfCollideables.size() ; i ++) 
+  {
+    if (listOfCollideables.get(i) instanceof Ball) {
+      for (Collideable d : listOfCollideables)
+      {
+        if (d instanceof Rock) {
+          if (listOfCollideables.get(i).isTouching(d))
+          {
+            Rock r = ((Rock)listOfCollideables.get(i))
+            r.touchingRock = true;
+          } else
+          {
+            listOfCollideables.get(i).touchingRock = false;
+          }
+        }
+      }
+    }
+  }
 }
+     
