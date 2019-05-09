@@ -82,13 +82,13 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable, Collideable {
   boolean touchingRock = false;
+  PShape s = createShape(ELLIPSE, x, y, 50, 50);
   Ball(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
   }
   
   void display() {
-    PShape s = createShape(ELLIPSE, x, y, 50, 50);
     if (!touchingRock)
     { 
       fill(255, 0, 0);
