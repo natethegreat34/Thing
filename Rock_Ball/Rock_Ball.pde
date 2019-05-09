@@ -80,7 +80,7 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable, Collideable {
+class Ball extends Thing implements Moveable {
   //boolean touchingRock = false;
   PShape s = createShape(ELLIPSE, x, y, 50, 50);
   Ball(float x, float y) {
@@ -113,25 +113,6 @@ class Ball extends Thing implements Moveable, Collideable {
     {
       this.x += widthIncrement;
       this.y += heightIncrement;
-    }
-  }
-
-  boolean isTouching(Thing other) {
-    if (other instanceof Rock)
-    {
-      if ((this.x >= other.x - 25 && this.x <= other.x + 75) && (this.y >= other.y - 25 && this.y <= other.y + 75))
-        return true;
-      else
-        return false;
-    } else if (other instanceof Ball)
-    {
-      if ((this.x >= other.x - 50 && this.x <= other.y + 50) && (this.y >= other.y - 50 && this.y <= other.y + 50))
-        return true;
-      else
-        return false;
-    } else
-    {
-      return false;//this means Thing was a class other than Ball or Rock
     }
   }
 
@@ -172,7 +153,7 @@ void setup() {
   }
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
-  listOfCollideables = new ArrayList<Collideable>();
+  listOfCollideables = new ArrayList<Collideable>(); // if collideable is touching ball, change the ball
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
@@ -205,10 +186,10 @@ void draw() {
           if (listOfCollideables.get(i).isTouching(d))
           {
             listOfCollideables.get(i).getShape().setFill(255, 0, 0);
-          } else
-          {
-            listOfCollideables.get(i).touchingRock = false;
-          }
+          } //else
+          //{
+          //  listOfCollideables.get(i).touchingRock = false;
+          //}
         }
       }
     }
