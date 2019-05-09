@@ -68,36 +68,36 @@ public class LivingRock extends Rock implements Moveable {
       y+=yincrement;
     }
   }
-  
-  void display(){
+
+  void display() {
     super.display();
-    fill(255,255,255);
-    ellipse(x,y,34,30);
-    ellipse(x+35,y,34,30);
-    fill(0,0,0);
-    ellipse(x,y,10,10);
-    ellipse(x+35,y,10,10);
+    fill(255, 255, 255);
+    ellipse(x, y, 34, 30);
+    ellipse(x+35, y, 34, 30);
+    fill(0, 0, 0);
+    ellipse(x, y, 10, 10);
+    ellipse(x+35, y, 10, 10);
   }
 }
 
 class Ball extends Thing implements Moveable, Collideable {
-  boolean touchingRock = false;
-  PShape s = createShape(ELLIPSE, x, y, 50, 50);//yes
+  //boolean touchingRock = false;
+  PShape s = createShape(ELLIPSE, x, y, 50, 50);
   Ball(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
   }
-  
+
   void display() {
-    if (!touchingRock)
-    { 
-      fill(255, 0, 0);
-      shape(s);
-    } else
-    {
+    //if (!touchingRock)
+    //{ 
+    //  fill(255, 0, 0);
+    //  shape(s);
+    //} else
+    //{
       fill(0, 255, 0);
       shape(s);
-    }
+    //}
   }
   void move() {
     /* ONE PERSON WRITE THIS */
@@ -134,6 +134,11 @@ class Ball extends Thing implements Moveable, Collideable {
       return false;//this means Thing was a class other than Ball or Rock
     }
   }
+
+  private PShape getShape() {
+    return this.s;
+  }
+  
 }
 
 //class BallOne extends Ball {
@@ -191,7 +196,7 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-  for (int i = 0 ; i < listOfCollideables.size() ; i ++) 
+  for (int i = 0; i < listOfCollideables.size(); i ++) 
   {
     if (listOfCollideables.get(i) instanceof Ball) {
       for (Collideable d : listOfCollideables)
@@ -199,8 +204,7 @@ void draw() {
         if (d instanceof Rock) {
           if (listOfCollideables.get(i).isTouching(d))
           {
-            Rock r = ((Rock)listOfCollideables.get(i));
-            r.touchingRock = true;
+            listOfCollideables.get(i).getShape().setFill(255, 0, 0);
           } else
           {
             listOfCollideables.get(i).touchingRock = false;
