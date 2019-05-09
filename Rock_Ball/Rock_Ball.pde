@@ -81,12 +81,12 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable, Collideable {
+  boolean touchingRock = false;
   Ball(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
   }
-  boolean touchingRock = false;
-
+  
   void display() {
     PShape s = createShape(ELLIPSE, x, y, 50, 50);
     if (!touchingRock)
@@ -191,22 +191,22 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-  //for (int i = 0 ; i < listOfCollideables.size() ; i ++) 
-  //{
-  //  if (listOfCollideables.get(i) instanceof Ball) {
-  //    for (Collideable d : listOfCollideables)
-  //    {
-  //      if (d instanceof Rock) {
-  //        if (listOfCollideables.get(i).isTouching(d))
-  //        {
-  //          Rock r = ((Rock)listOfCollideables.get(i));
-  //          r.touchingRock = true;
-  //        } else
-  //        {
-  //          listOfCollideables.get(i).touchingRock = false;
-  //        }
-  //      }
-  //    }
-  //  }
-  //}
+  for (int i = 0 ; i < listOfCollideables.size() ; i ++) 
+  {
+    if (listOfCollideables.get(i) instanceof Ball) {
+      for (Collideable d : listOfCollideables)
+      {
+        if (d instanceof Rock) {
+          if (listOfCollideables.get(i).isTouching(d))
+          {
+            Rock r = ((Rock)listOfCollideables.get(i));
+            r.touchingRock = true;
+          } else
+          {
+            listOfCollideables.get(i).touchingRock = false;
+          }
+        }
+      }
+    }
+  }
 }
