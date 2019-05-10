@@ -83,16 +83,17 @@ public class LivingRock extends Rock implements Moveable {
 class Ball extends Thing implements Moveable {
   //boolean touchingRock = false;
   PShape s;
+  color c;
   Ball(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
-    s = createShape(ELLIPSE, x, y, 50, 50);
+    s = createShape(ELLIPSE, x, y, 50, 50); //commentable
   }
 
   void display() {
     fill(0, 255, 0);
-    //ellipse(x, y, 50, 50);
-    shape(s, x, y);
+    //ellipse(x, y, 50, 50);//commentable
+    shape(s, x, y);//commentable
   }
   void move() {
     /* ONE PERSON WRITE THIS */
@@ -168,14 +169,19 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-  //for (Collideable c : listOfCollideables)
-  //{
-  //  for(int i = 0 ; i < listOfBalls.size() ; i ++)
-  //  {
-  //    if (c.isTouching(listOfBalls.get(i)))
-  //    {
-  //      listOfBalls.get(i).s.setFill(color(255, 0, 0));
-  //    } 
-  //  }
-  //}
+  for (Collideable d : listOfCollideables)
+  {
+    for(int i = 0 ; i < listOfBalls.size() ; i ++)
+    {
+      color holder = listOfBalls.get(i).c;
+      if (d.isTouching(listOfBalls.get(i)))
+      {
+        listOfBalls.get(i).s.setFill(color(255, 0, 0));
+      }
+      else
+      {
+        listOfBalls.get(i).s.setFill(holder);
+      }
+    }
+  }
 }
