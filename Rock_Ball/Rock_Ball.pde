@@ -168,6 +168,7 @@ ArrayList<Ball> listOfBalls;
 PImage img;
 PImage lmg;
 void setup() {
+  frameRate(60);
   img = loadImage("canva-amethyst-crystal-stone-on-white-MACCXvloiOc.png");
   lmg = loadImage("kisspng-igneous-rock-obsidian-mineral-crystal-obsidian-5b33624d348da5.3793704415300941572153.jpg");
   size(1000, 800);
