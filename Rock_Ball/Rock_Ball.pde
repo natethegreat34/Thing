@@ -141,6 +141,8 @@ class Ball extends Thing implements Moveable {
       }
       this.x += widthIncrement;
       this.y += heightIncrement;
+      //this.display(); //this would let us trace the path of the ball, 
+      //but I'd really need to see the ball moving, not trace it's path
     }
   }
 }
