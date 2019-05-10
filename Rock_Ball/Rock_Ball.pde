@@ -82,22 +82,17 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   //boolean touchingRock = false;
-  PShape s = createShape(ELLIPSE, x, y, 50, 50);
+  PShape s;
   Ball(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
+    s = createShape(ELLIPSE, x, y, 50, 50);
   }
 
   void display() {
-    //if (!touchingRock)
-    //{ 
-    //  fill(255, 0, 0);
-    //  shape(s);
-    //} else
-    //{
-      fill(0, 255, 0);
-      shape(s);
-    //}
+    fill(0, 255, 0);
+    //ellipse(x, y, 50, 50);
+    shape(s, x, y);
   }
   void move() {
     /* ONE PERSON WRITE THIS */
@@ -115,11 +110,6 @@ class Ball extends Thing implements Moveable {
       this.y += heightIncrement;
     }
   }
-
-  private PShape getShape() {
-    return this.s;
-  }
-  
 }
 
 //class BallOne extends Ball {
@@ -140,6 +130,7 @@ boolean su;
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
 ArrayList<Collideable> listOfCollideables;
+ArrayList<Ball> listOfBalls;
 PImage img;
 PImage lmg;
 void setup() {
@@ -158,7 +149,7 @@ void setup() {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    listOfCollideables.add(b);
+    //listOfBalls.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
   }
@@ -166,7 +157,7 @@ void setup() {
   LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
   thingsToDisplay.add(m);
   thingsToMove.add(m);
-  listOfCollideables.add(m);
+  //listOfCollideables.add(m);
 }
 
 void draw() {
@@ -177,21 +168,14 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-  for (int i = 0; i < listOfCollideables.size(); i ++) 
-  {
-    if (listOfCollideables.get(i) instanceof Ball) {
-      for (Collideable d : listOfCollideables)
-      {
-        if (d instanceof Rock) {
-          if (listOfCollideables.get(i).isTouching(d))
-          {
-            listOfCollideables.get(i).getShape().setFill(255, 0, 0);
-          } //else
-          //{
-          //  listOfCollideables.get(i).touchingRock = false;
-          //}
-        }
-      }
-    }
-  }
+  //for (Collideable c : listOfCollideables)
+  //{
+  //  for(int i = 0 ; i < listOfBalls.size() ; i ++)
+  //  {
+  //    if (c.isTouching(listOfBalls.get(i)))
+  //    {
+  //      listOfBalls.get(i).s.setFill(color(255, 0, 0));
+  //    } 
+  //  }
+  //}
 }
