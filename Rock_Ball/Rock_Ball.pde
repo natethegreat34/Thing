@@ -81,19 +81,20 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-  //boolean touchingRock = false;
+  boolean touchingRock;
   PShape s;
-  color c;
+  color c; //might be useful
   Ball(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
     s = createShape(ELLIPSE, x, y, 50, 50); //commentable
+    touchingRock = false;
   }
 
   void display() {
-    fill(0, 255, 0);
+    fill(0,255,0);
     //ellipse(x, y, 50, 50);//commentable
-    shape(s, x, y);//commentable
+    shape(s,x,y);//commentable
   }
   void move() {
     /* ONE PERSON WRITE THIS */
@@ -146,19 +147,22 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   listOfCollideables = new ArrayList<Collideable>(); // if collideable is touching ball, change the ball
+  listOfBalls = new ArrayList<Ball>();
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    //listOfBalls.add(b);
+    listOfBalls.add(b);
+
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
+    listOfCollideables.add(r);
   }
 
   LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
   thingsToDisplay.add(m);
   thingsToMove.add(m);
-  //listOfCollideables.add(m);
+  listOfCollideables.add(m);
 }
 
 void draw() {
@@ -169,19 +173,21 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-  for (Collideable d : listOfCollideables)
-  {
     for(int i = 0 ; i < listOfBalls.size() ; i ++)
     {
-      color holder = listOfBalls.get(i).c;
-      if (d.isTouching(listOfBalls.get(i)))
+      for(int m = 0 ; m < listOfCollideables.size() ; m ++)
       {
-        listOfBalls.get(i).s.setFill(color(255, 0, 0));
+        if (listOfCollideables.get(m).isTouching(listOfBalls.get(i)))
+        {
+          listOfBalls.get(i).touchingRock = true;
+          m = listOfCollideables.size();
+        }
+        else
+        {
+          listOfBalls.get(i).touchingRock = false;
+        }
       }
-      else
-      {
-        listOfBalls.get(i).s.setFill(holder);
-      }
+      
     }
-  }
+ 
 }
