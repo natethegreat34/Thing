@@ -98,18 +98,22 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
-    fill(0,255,0);
+    fill(0, 255, 0);
     //ellipse(x, y, 50, 50);//commentable
-    shape(s,x,y);//commentable
+    shape(s, x, y);//commentable
   }
-   void move() {
+  void move() {
     /* ONE PERSON WRITE THIS */
-    moveRandom();
+    int selector = (int)random(0, 2);
+    if (selector == 0)
+      moveRandom();
+    if (selector == 1)
+      moveDirection();
   }
   private void moveRandom() 
   {
-    widthIncrement = random(50);
-    heightIncrement = random(50);
+    widthIncrement = random(-25, 25);
+    heightIncrement = random(-25, 25);
     //does not account for both increments being 0
 
     if (this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25 ||
@@ -125,9 +129,22 @@ class Ball extends Thing implements Moveable {
   }
   private void moveDirection()
   {
-    
+    widthIncrement = random(-3, 3);
+    heightIncrement = random(-3, 3);
+    for (int i = 0; i < 50; i ++)
+    {
+      if (this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25 ||
+        this.y + heightIncrement  > (height - 25) || this.y + heightIncrement < 25)
+      {
+        widthIncrement *= -1;
+        heightIncrement *= -1;
+      }
+      this.x += widthIncrement;
+      this.y += heightIncrement;
+    }
   }
 }
+
 
 //class BallOne extends Ball {
 //  Ball(float x, float y) {
@@ -188,21 +205,18 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-    for(int i = 0 ; i < listOfBalls.size() ; i ++)
+  for (int i = 0; i < listOfBalls.size(); i ++)
+  {
+    for (int m = 0; m < listOfCollideables.size(); m ++)
     {
-      for(int m = 0 ; m < listOfCollideables.size() ; m ++)
+      if (listOfCollideables.get(m).isTouching(listOfBalls.get(i)))
       {
-        if (listOfCollideables.get(m).isTouching(listOfBalls.get(i)))
-        {
-          listOfBalls.get(i).touchingRock = true;
-          m = listOfCollideables.size();
-        }
-        else
-        {
-          listOfBalls.get(i).touchingRock = false;
-        }
+        listOfBalls.get(i).touchingRock = true;
+        m = listOfCollideables.size();
+      } else
+      {
+        listOfBalls.get(i).touchingRock = false;
       }
-      
     }
- 
+  }
 }
