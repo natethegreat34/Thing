@@ -60,8 +60,8 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    double yincrement = random(-5, 5);
-    double xincrement = random(-5, 5);
+    float yincrement = random(-5, 5);
+    float xincrement = random(-5, 5);
     /* ONE PERSON WRITE THIS */
     if (x+xincrement<=width-25 && y+yincrement<=height-25) {
       x+=xincrement;
@@ -84,6 +84,12 @@ class Ball extends Thing implements Moveable {
   boolean touchingRock;
   PShape s;
   color c; //might be useful
+  float directionXIncrement;
+  float directionYIncrement;
+  float xspeed;
+  float yspeed;
+  float widthIncrement;
+  float heightIncrement;
   Ball(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
@@ -96,10 +102,15 @@ class Ball extends Thing implements Moveable {
     //ellipse(x, y, 50, 50);//commentable
     shape(s,x,y);//commentable
   }
-  void move() {
+   void move() {
     /* ONE PERSON WRITE THIS */
-    int widthIncrement = (int)(random(0, 3)) * 5 - 5;
-    int heightIncrement = (int)(random(0, 3)) * 5 - 5;//does not account for both increments being 0
+    moveRandom();
+  }
+  private void moveRandom() 
+  {
+    widthIncrement = random(50);
+    heightIncrement = random(50);
+    //does not account for both increments being 0
 
     if (this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25 ||
       this.y + heightIncrement  > (height - 25) || this.y + heightIncrement < 25)
@@ -111,6 +122,10 @@ class Ball extends Thing implements Moveable {
       this.x += widthIncrement;
       this.y += heightIncrement;
     }
+  }
+  private void moveDirection()
+  {
+    
   }
 }
 
