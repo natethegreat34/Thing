@@ -16,3 +16,6 @@ James : added eyes to the living rock
 
 5/9/19:
 Derek Lao; Add red and tested code to make rock colliding with ball to produce red. Also added FPS thing, maybe helpful.
+
+5/11/19:
+Chong : Edited display method of the Ball class so that it is compatible with the collideable interface. 
