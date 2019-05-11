@@ -100,7 +100,10 @@ class Ball extends Thing implements Moveable {
   void display() {
     fill(0, 255, 0);
     //ellipse(x, y, 50, 50);//commentable
-    shape(s, x, y);//commentable
+    s = createShape(ELLIPSE, x, y, 50, 50);
+    shape(s);//commentable
+    c = color(0,random(255),random(255));
+    fill(c);
   }
   void move() {
     /* ONE PERSON WRITE THIS */
