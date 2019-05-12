@@ -108,27 +108,30 @@ class Ball extends Thing implements Moveable {
   }
   void move() {
     /* ONE PERSON WRITE THIS */
-    int selector = (int)random(0, 2);
-    if (selector == 0)
-      moveRandom();
-    if (selector == 1)
-      moveDirection();
+    moveRandom();
+    //int selector = (int)random(0, 2);
+    //if (selector == 0)
+    //  moveRandom();
+    //if (selector == 1)
+    //  moveDirection();
   }
   private void moveRandom() 
   {
     widthIncrement = random(-25, 25);
     heightIncrement = random(-25, 25);
     //does not account for both increments being 0
+    float newWidth = this.x + widthIncrement;
+    float newHeight = this.y + heightIncrement;
 
-    if (this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25 ||
-      this.y + heightIncrement  > (height - 25) || this.y + heightIncrement < 25)
+    if (newWidth > (width - 25) || newWidth < 25 ||
+      newHeight  > (height - 25) || newHeight < 25)
     {
       this.x -= (widthIncrement);
       this.y -= (heightIncrement);
     } else
     {
-      this.x += widthIncrement;
-      this.y += heightIncrement;
+      this.x = newWidth;
+      this.y = newHeight;
     }
   }
   private void moveDirection()
@@ -226,4 +229,6 @@ void draw() {
       }
     }
   }
+  println(frameRate);
+  println(frameCount);
 }
