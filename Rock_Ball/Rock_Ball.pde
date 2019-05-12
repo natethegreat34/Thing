@@ -246,6 +246,8 @@ class BallTwo extends Ball {
       dx = -1;
       dy = -1;
     }
+    widthIncrement = random(0, 15);
+    heightIncrement = random(0, 15);
   }
   void display() {
     if (!touchingRock)
@@ -266,7 +268,7 @@ class BallTwo extends Ball {
       dx *= -1;
     }
     if (this.y > height-25 || this.y < 25) {
-      heightIncrement = random(0,15)
+      heightIncrement = random(0,15);
       dy *= -1;
     }
   }
