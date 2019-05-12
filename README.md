@@ -25,7 +25,7 @@ Chong : Edited display method of the Ball class so that it is compatible with th
 
 5/12/19:
 Chong:
-Added a display method for BallOne, the other subclass of the Ball class. The different display methods for the two subclasses ensure that they appear differently. Also edited display for BallTwo so that it turns blue when it collides with a rock rather than turning red.
+Added a display method for BallOne, the other subclass of the Ball class. The different display methods for the two subclasses ensure that they appear differently. Also edited display for BallTwo so that it turns blue when it collides with a rock rather than turning red. Added more changes to the BallTWo class. BallTwo has random speeds and direction when it is created. When it hits the wall, it changes to random speed and random direction. Changes were made to the constructor to implement different variable regarding speed. Also BallTwo are slightly smaller than BallOne so that it is differentiate them.
 
 Derek:
 shortened out of bounds checking/colliding code, removed obsolete code, implemented private method moveDirection() for BallOne
