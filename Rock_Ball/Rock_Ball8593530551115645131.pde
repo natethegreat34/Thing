@@ -105,7 +105,6 @@ class Ball extends Thing implements Moveable {
     //  moveRandom();
     //if (selector == 1)
     //  moveDirection();
-    // moveDirection();
   }
   private void moveRandom() 
   {
@@ -128,24 +127,7 @@ class Ball extends Thing implements Moveable {
     //this.x = newWidth;//testcode
     //this.y = newHeight;//testcode
   }
-  private void moveDirection()
-  {
-    widthIncrement = random(-3, 3);
-    heightIncrement = random(-3, 3);
-    for (int i = 0; i < 50; i ++)
-    {
-      if (this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25 ||
-        this.y + heightIncrement  > (height - 25) || this.y + heightIncrement < 25)
-      {
-        widthIncrement *= -1;
-        heightIncrement *= -1;
-      }
-      this.x += widthIncrement;
-      this.y += heightIncrement;
-      //this.display(); //this would let us trace the path of the ball, 
-      //but I'd really need to see the ball moving, not trace it's path
-    }
-  }
+  
 }
 
 
@@ -184,11 +166,6 @@ class BallTwo extends Ball {
     //x and y coordinates are the center of the ball
     super(x, y);
   }
-  void display(){
-    super.display();
-    fill(255, 255, 255);
-    ellipse(x, y, 30, 30);
-  }
 }
 
 boolean su;
@@ -212,17 +189,11 @@ void setup() {
   thingsToMove = new ArrayList<Moveable>();
   listOfCollideables = new ArrayList<Collideable>(); // if collideable is touching ball, change the ball
   listOfBalls = new ArrayList<Ball>();
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     listOfBalls.add(b);
-    
-    BallTwo b2 = new BallTwo(50+random(width-100), 50+random(height-100));
-    thingsToDisplay.add(b2);
-    thingsToMove.add(b2);
-    listOfBalls.add(b2);
-    
 
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
