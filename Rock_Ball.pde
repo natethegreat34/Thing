@@ -49,18 +49,43 @@ class Rock extends Thing implements Collideable {
 }
 
 public class LivingRock extends Rock implements Moveable {
+  float xincrement;
+  float yincrement;
+  
+  
   LivingRock(float x, float y) {
     super(x, y, img);
   }
   void move() {
-    float yincrement = random(-5, 5);
-    float xincrement = random(-5, 5);
-    /* ONE PERSON WRITE THIS */
-    if (x+xincrement<=width-25 && y+yincrement<=height-25) {
-      x+=xincrement;
-      y+=yincrement;
+    int moveType = (int)random(0, 3);
+    if (moveType <= 1)randomMove();
+    else if (moveType <=2)diagonalMove();
+    
+  }
+  
+  void randomMove(){
+    float yincrement = random(-15, 15);
+    float xincrement = random(-15, 15);
+    if (x+xincrement<=width-25 && y+yincrement<=height-25 && x+xincrement>=25 && y+yincrement>=25) {
+        x+=xincrement;
+        y+=yincrement;
     }
   }
+  
+  void diagonalMove(){
+     if ((frameCount + 5) % 10 == 0)
+    {
+      float holder = xincrement;
+      xincrement = yincrement * -1;
+    } else if (frameCount % 10 == 0)
+    {
+      float holder = yincrement;
+      yincrement = xincrement * -1;
+    }
+    x += xincrement;
+    y += yincrement;
+  }
+  
 
   void display() {
     super.display();
