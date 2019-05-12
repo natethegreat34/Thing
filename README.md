@@ -31,3 +31,6 @@ Derek:
 shortened out of bounds checking/colliding code, removed obsolete code, implemented private method moveDirection() for BallOne
 Added to force widthIncrement or heightIncrement to not be trivially small so movement is hard to be observed
 added randomDirectionMovement, and added a mechanism to randomly choose between those paths
+
+Nathan:
+Code wasn't working so he fixed it.  ALso fixed the frame rate problem that was cause because a line that was deleted befre made its way bak into the coded and so an image was being re loaded with every call to draw.  Put the finishing touches on the project so that it can work.
