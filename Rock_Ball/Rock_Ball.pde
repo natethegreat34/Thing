@@ -246,31 +246,33 @@ class BallTwo extends Ball {
       dx = -1;
       dy = -1;
     }
-    widthIncrement = random(0, 15);
-    heightIncrement = random(0, 15);
+    widthIncrement = random(0, 10);
+    heightIncrement = random(0,10);
   }
   void display() {
     if (!touchingRock)
       c = permanentc;
     else 
     c = color(0, 0, 255);
-    s = createShape(ELLIPSE, x, y, 50, 50); //commentable
+    s = createShape(ELLIPSE, x, y, 30, 30); //commentable
     s.setFill(c);
     shape(s);//commentable
     fill(255, 255, 255);
-    ellipse(x, y, 30, 30);
+    ellipse(x, y, 20, 20);
   }
   void move() {
     this.x+=widthIncrement*dx;
     this.y+=heightIncrement*dy;
-    if (this.x > width-25 || this.x < 25) {
-      widthIncrement = random(0,15);
+    if (this.x+widthIncrement*dx > width-15 || this.x+widthIncrement*dx < 15) {
+      widthIncrement = random(0,10);
       dx *= -1;
     }
-    if (this.y > height-25 || this.y < 25) {
-      heightIncrement = random(0,15);
+    if (this.y+heightIncrement*dy > height-15 || this.y+heightIncrement*dy < 15) {
+      heightIncrement = random(0,10);
       dy *= -1;
     }
+    this.x+=widthIncrement*dx;
+    this.y+=heightIncrement*dy;
   }
 }
 
