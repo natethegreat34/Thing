@@ -254,7 +254,7 @@ class BallTwo extends Ball {
       c = permanentc;
     else 
     c = color(0, 0, 255);
-    s = createShape(ELLIPSE, x, y, 30, 30); //commentable
+    s = createShape(ELLIPSE, x, y, 40, 40); //commentable
     s.setFill(c);
     shape(s);//commentable
     fill(255, 255, 255);
