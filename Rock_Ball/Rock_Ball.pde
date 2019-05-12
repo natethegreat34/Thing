@@ -140,8 +140,8 @@ class BallOne extends Ball {
     heightIncrement = random(-5, 5);
     while(5 - Math.abs(widthIncrement) > 3 && 5 - Math.abs(heightIncrement) > 3)
     {
-      widthIncrement = random(-3, 3);
-      heightIncrement = random(-3, 3);
+      widthIncrement = random(-5, 5);
+      heightIncrement = random(-5, 5);
     }//this loop ensures values from -5 to -2, and 2 to 5, but not small values for both x and y between -2 and 2.
   }
   
