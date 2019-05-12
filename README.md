@@ -34,3 +34,6 @@ added randomDirectionMovement, and added a mechanism to randomly choose between 
 
 Nathan:
 Code wasn't working so he fixed it.  ALso fixed the frame rate problem that was cause because a line that was deleted befre made its way bak into the coded and so an image was being re loaded with every call to draw.  Put the finishing touches on the project so that it can work.
+
+James:
+Worked on the different movement methods for the living rock. Utilized random() for one method in which the rock will just move in sporatic movements in short little bursts. The other method the rock utilizes directions calculated by the pythagorean theorem and additionally can move in any direction.
