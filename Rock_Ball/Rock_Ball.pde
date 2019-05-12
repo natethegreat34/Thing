@@ -18,21 +18,23 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing implements Collideable {
-  Rock(float x, float y) {
+  PImage lol;
+  Rock(float x, float y, PImage lo) {
     super(x, y);
+    lol = lo;
+
     //x and y coordinates are corners of the rock
   }
 
   void display() { 
     /* ONE PERSON WRITE THIS */
-    img = loadImage("canva-amethyst-crystal-stone-on-white-MACCXvloiOc.png");
-    image(img, x, y, 50, 50);
+    image(lol, x, y, 50, 50);
   }
 
   boolean isTouching(Thing other) {
     if (other instanceof Ball)
     {
-      if((Math.abs(this.x - (other.x - 25)) <= 50) && (Math.abs(this.y - (other.y - 25)) <= 50))
+      if ((Math.abs(this.x - (other.x - 25)) <= 50) && (Math.abs(this.y - (other.y - 25)) <= 50))
       {
         return true;
       } else
@@ -48,7 +50,7 @@ class Rock extends Thing implements Collideable {
 
 public class LivingRock extends Rock implements Moveable {
   LivingRock(float x, float y) {
-    super(x, y);
+    super(x, y, img);
   }
   void move() {
     float yincrement = random(-5, 5);
@@ -84,14 +86,14 @@ class Ball extends Thing implements Moveable {
     //x and y coordinates are the center of the ball
     super(x, y);
     touchingRock = false;
-    permanentc = color(0,random(256),random(256));
+    permanentc = color(0, random(256), random(256));
   }
 
   void display() {
-    if(!touchingRock)
-    c = permanentc;
+    if (!touchingRock)
+      c = permanentc;
     else
-    c = color(255,0,0);
+      c = color(255, 0, 0);
     s = createShape(ELLIPSE, x, y, 50, 50); //commentable
     s.setFill(c);
     shape(s);//commentable
@@ -113,9 +115,9 @@ class Ball extends Thing implements Moveable {
     heightIncrement = (float)Math.random() * 50 - 25;
     float newWidth = this.x + widthIncrement;
     float newHeight = this.y + heightIncrement;
-    if((Math.abs(newWidth - width/2) > (width/2 - 25)) || Math.abs(newHeight - height/2) > (height/2 - 25))
-    //if (newWidth > (width - 25) || newWidth < 25 ||
-    //  newHeight  > (height - 25) || newHeight < 25)
+    if ((Math.abs(newWidth - width/2) > (width/2 - 25)) || Math.abs(newHeight - height/2) > (height/2 - 25))
+      //if (newWidth > (width - 25) || newWidth < 25 ||
+      //  newHeight  > (height - 25) || newHeight < 25)
     {
       this.x -= (widthIncrement);
       this.y -= (heightIncrement);
@@ -133,7 +135,7 @@ class Ball extends Thing implements Moveable {
 
 
 class BallOne extends Ball {
-  int selector = (int)random(0,3);
+  int selector = (int)random(0, 3);
   BallOne(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
@@ -141,10 +143,11 @@ class BallOne extends Ball {
     {
       widthIncrement = random(-5, 5);
       heightIncrement = random(-5, 5);
-    } while(5 - Math.abs(widthIncrement) > 3 && 5 - Math.abs(heightIncrement) > 3);//this loop ensures values from -5 to -2, and 2 to 5, but not small values for both x and y between -2 and 2.
+    } 
+    while (5 - Math.abs(widthIncrement) > 3 && 5 - Math.abs(heightIncrement) > 3);//this loop ensures values from -5 to -2, and 2 to 5, but not small values for both x and y between -2 and 2.
   }
-  
-  void display(){
+
+  void display() {
     super.display();
     fill(255);
     stroke(255);
@@ -152,45 +155,44 @@ class BallOne extends Ball {
     ellipse(x, y, 40, 10);
     stroke(0);
   }
-  
-  void move(){
-    if(frameCount % 75 == 0)
+
+  void move() {
+    if (frameCount % 75 == 0)
     {
-      selector = (int)random(0,3);
+      selector = (int)random(0, 3);
     }
-    if(selector == 0)
-    moveDirection();
-    else if(selector == 1)
-    moveZigZag();
-    else if(selector == 2)
-    moveRandomDirection();
+    if (selector == 0)
+      moveDirection();
+    else if (selector == 1)
+      moveZigZag();
+    else if (selector == 2)
+      moveRandomDirection();
   }
-  
+
   private void moveDirection()
   {
-    if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
-    widthIncrement *= -1;
-    if(Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
-    heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
+    if (Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
+      widthIncrement *= -1;
+    if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
+      heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
     this.x += widthIncrement;
     this.y += heightIncrement;
     //this.display(); //this would let us trace the path of the ball, 
     //but I'd really need to see the ball moving, not trace it's path
   }
-  
+
   private void moveZigZag()
   {
-    if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
-    widthIncrement *= -1;
-    if(Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
-    heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
-    if((frameCount + 5) % 10 == 0)
+    if (Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
+      widthIncrement *= -1;
+    if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
+      heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
+    if ((frameCount + 5) % 10 == 0)
     {
       float holder = widthIncrement;
       widthIncrement = heightIncrement * -1;
       heightIncrement = holder;
-    }
-    else if(frameCount % 10 == 0)
+    } else if (frameCount % 10 == 0)
     {
       float holder = heightIncrement;
       heightIncrement = widthIncrement * -1;
@@ -199,23 +201,23 @@ class BallOne extends Ball {
     this.x += widthIncrement;
     this.y += heightIncrement;
   }
-  
-  private void moveRandomDirection(){
-    if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
-    widthIncrement *= -1;
-    if(Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
-    heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
+
+  private void moveRandomDirection() {
+    if (Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
+      widthIncrement *= -1;
+    if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
+      heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
     this.x += widthIncrement;
     this.y += heightIncrement;
-    
-    if(frameCount % 20 == 0)
+
+    if (frameCount % 20 == 0)
     {
       do
       {
         widthIncrement = random(-5, 5);
         heightIncrement = random(-5, 5);
       }
-      while(5 - Math.abs(widthIncrement) > 3 && 5 - Math.abs(heightIncrement) > 3);
+      while (5 - Math.abs(widthIncrement) > 3 && 5 - Math.abs(heightIncrement) > 3);
     }
   }
 }
@@ -224,18 +226,18 @@ class BallTwo extends Ball {
   BallTwo(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
-    permanentc = color(random(256),random(256),0);
+    permanentc = color(random(256), random(256), 0);
     int temp = (int)random(0, 2);
-    if(temp == 0)
+    if (temp == 0)
       widthIncrement = 20;
-    if(temp == 1)
+    if (temp == 1)
       widthIncrement = -20;
   }
   void display() {
-    if(!touchingRock)
+    if (!touchingRock)
       c = permanentc;
     else 
-      c = color(0,0,255);
+    c = color(0, 0, 255);
     s = createShape(ELLIPSE, x, y, 50, 50); //commentable
     s.setFill(c);
     shape(s);//commentable
@@ -261,11 +263,6 @@ void setup() {
   img = loadImage("canva-amethyst-crystal-stone-on-white-MACCXvloiOc.png");
   lmg = loadImage("kisspng-igneous-rock-obsidian-mineral-crystal-obsidian-5b33624d348da5.3793704415300941572153.jpg");
   size(1000, 800);
-  double q = Math.random() * 2;
-  System.out.println(q);
-  if (q < 1) {
-    su = true;
-  }
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   listOfCollideables = new ArrayList<Collideable>(); // if collideable is touching ball, change the ball
@@ -275,19 +272,26 @@ void setup() {
     //thingsToDisplay.add(b);
     //thingsToMove.add(b);
     //listOfBalls.add(b);
-    
+
     BallOne b1 = new BallOne(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b1);
     thingsToMove.add(b1);
     listOfBalls.add(b1);
-    
+
     BallTwo b2 = new BallTwo(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b2);
     thingsToMove.add(b2);
     listOfBalls.add(b2);
-    
 
-    Rock r = new Rock(50+random(width-100), 50+random(height-100));
+
+    double t = Math.random() * 2;
+    Rock r;
+    System.out.println(t + "jwdindkjndk");
+    if (t > 1) {
+      r = new Rock(50+random(width-100), 50+random(height-100), img);
+    } else {
+      r = new Rock(50+random(width-100), 50+random(height-100), lmg);
+    }
     thingsToDisplay.add(r);
     listOfCollideables.add(r);
   }
@@ -320,6 +324,6 @@ void draw() {
       }
     }
   }
-  println(frameRate);
-  println(frameCount);
+  //println(frameRate);
+  //println(frameCount);
 }
