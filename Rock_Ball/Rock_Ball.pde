@@ -171,6 +171,7 @@ class BallTwo extends Ball {
   BallTwo(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
+    permanentc = color(random(256),random(256),0);
     int temp = (int)random(0, 2);
     if(temp == 0)
       widthIncrement = 20;
@@ -178,7 +179,13 @@ class BallTwo extends Ball {
       widthIncrement = -20;
   }
   void display() {
-    super.display();
+    if(!touchingRock)
+      c = permanentc;
+    else 
+      c = color(0,0,255);
+    s = createShape(ELLIPSE, x, y, 50, 50); //commentable
+    s.setFill(c);
+    shape(s);//commentable
     fill(255, 255, 255);
     ellipse(x, y, 30, 30);
   }
