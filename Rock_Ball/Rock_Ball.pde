@@ -223,15 +223,29 @@ class BallOne extends Ball {
 }
 
 class BallTwo extends Ball {
+  float dx;
+  float dy;
   BallTwo(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
     permanentc = color(random(256), random(256), 0);
-    int temp = (int)random(0, 2);
-    if (temp == 0)
-      widthIncrement = 20;
-    if (temp == 1)
-      widthIncrement = -20;
+    int temp = (int)random(0, 4);
+    if (temp == 0){
+      dx = 1;
+      dy = 1;
+    }
+    if (temp == 1){
+      dx = -1;
+      dy = 1;
+    }
+    if (temp == 2){
+      dx = 1;
+      dy = -1;
+    }
+    if (temp == 3){
+      dx = -1;
+      dy = -1;
+    }
   }
   void display() {
     if (!touchingRock)
@@ -245,9 +259,16 @@ class BallTwo extends Ball {
     ellipse(x, y, 30, 30);
   }
   void move() {
-    this.x+=widthIncrement;
-    if (this.x > width-25 || this.x < 25)
-      widthIncrement *= -1;
+    this.x+=widthIncrement*dx;
+    this.y+=heightIncrement*dy;
+    if (this.x > width-25 || this.x < 25) {
+      widthIncrement = random(0,15);
+      dx *= -1;
+    }
+    if (this.y > height-25 || this.y < 25) {
+      heightIncrement = random(0,15)
+      dy *= -1;
+    }
   }
 }
 
