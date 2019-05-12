@@ -160,6 +160,11 @@ class BallTwo extends Ball {
     //x and y coordinates are the center of the ball
     super(x, y);
   }
+  void display(){
+    super.display();
+    fill(255, 255, 255);
+    ellipse(x, y, 30, 30);
+  }
 }
 
 boolean su;
@@ -183,11 +188,17 @@ void setup() {
   thingsToMove = new ArrayList<Moveable>();
   listOfCollideables = new ArrayList<Collideable>(); // if collideable is touching ball, change the ball
   listOfBalls = new ArrayList<Ball>();
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 5; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     listOfBalls.add(b);
+    
+    BallTwo b2 = new BallTwo(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(b2);
+    thingsToMove.add(b2);
+    listOfBalls.add(b2);
+    
 
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
