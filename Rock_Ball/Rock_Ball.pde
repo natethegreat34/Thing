@@ -33,7 +33,6 @@ class Rock extends Thing implements Collideable {
     if (other instanceof Ball)
     {
       if((Math.abs(this.x - (other.x - 25)) <= 50) && (Math.abs(this.y - (other.y - 25)) <= 50))
-      //if ((this.x <= other.x + 25 && this.x >= other.x - 75) && (this.y <= other.y + 25 && this.y >= other.y - 75))
       {
         return true;
       } else
