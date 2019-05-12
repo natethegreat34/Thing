@@ -28,8 +28,7 @@ class Rock extends Thing implements Collideable {
 
   void display() { 
     /* ONE PERSON WRITE THIS */
-    img = loadImage("canva-amethyst-crystal-stone-on-white-MACCXvloiOc.png");
-    image(img, x, y, 50, 50);
+    image(lol, x, y, 50, 50);
   }
 
   boolean isTouching(Thing other) {
