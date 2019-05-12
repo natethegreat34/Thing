@@ -53,6 +53,8 @@ public class LivingRock extends Rock implements Moveable {
   float yincrement;
   float selector;
   int rand;
+  double e = 3;
+  double f =3;
   
   
   LivingRock(float x, float y) {
@@ -70,14 +72,26 @@ public class LivingRock extends Rock implements Moveable {
     
   }
   
-  void randomMove(){
-    float yincrement = random(-15, 15);
-    float xincrement = random(-15, 15);
-    if (x+xincrement<=width-25 && y+yincrement<=height-25 && x+xincrement>=25 && y+yincrement>=25) {
+ void randomMove(){
+    double yincrement = Math.random()* 2 * f;
+    double xincrement = Math.random()* 2 * e;    
+    System.out.println(width + " w " + "\n" + height + "h");
+    System.out.println(x + " x " + "\n" + y + "y");
         x+=xincrement;
         y+=yincrement;
+    if (x+25 >= width && e == 3){
+      e = -3;
     }
-  }
+    if (x-25 <= 0 && e == -3){
+      e = 3;
+    }
+    if (y + 25 >= height && f == 3){
+      f = -3;
+    }
+     if (y - 25 <= 0 && f == -3){
+      f = 3;
+    }
+ }
   
   void diagonalMove(){
     if (frameCount % 50 == 0) rand = (int)random(0,4);
