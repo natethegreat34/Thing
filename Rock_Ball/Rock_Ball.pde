@@ -83,9 +83,8 @@ public class LivingRock extends Rock implements Moveable {
 class Ball extends Thing implements Moveable {
   boolean touchingRock;
   PShape s;
-  color c; //might be useful
-  float directionXIncrement;
-  float directionYIncrement;
+  color c;
+  color permanentc;
   float xspeed;
   float yspeed;
   float widthIncrement;
@@ -93,17 +92,19 @@ class Ball extends Thing implements Moveable {
   Ball(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
-    s = createShape(ELLIPSE, x, y, 50, 50); //commentable
     touchingRock = false;
+    permanentc = color(0,random(256),random(256));
   }
 
   void display() {
-    fill(0, 255, 0);
+    if(!touchingRock)
+    c = permanentc;
+    else
+    c = color(255,0,0);
     //ellipse(x, y, 50, 50);//commentable
-    s = createShape(ELLIPSE, x, y, 50, 50);
-    shape(s);//commentable
-    c = color(0,random(255),random(255));
+    s = createShape(ELLIPSE, x, y, 50, 50); //commentable
     s.setFill(c);
+    shape(s);//commentable
   }
   void move() {
     /* ONE PERSON WRITE THIS */
