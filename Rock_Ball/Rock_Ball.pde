@@ -142,6 +142,11 @@ class BallOne extends Ball {
   
   void display(){
     super.display();
+    fill(255);
+    stroke(255);
+    ellipse(x, y, 10, 40);
+    ellipse(x, y, 40, 10);
+    stroke(0);
   }
   
   void move(){
