@@ -136,8 +136,13 @@ class BallOne extends Ball {
   BallOne(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
-    widthIncrement = random(-3, 3);
-    heightIncrement = random(-3, 3);
+    widthIncrement = random(-5, 5);
+    heightIncrement = random(-5, 5);
+    while(5 - Math.abs(widthIncrement) > 3 && 5 - Math.abs(heightIncrement) > 3)
+    {
+      widthIncrement = random(-3, 3);
+      heightIncrement = random(-3, 3);
+    }//this loop ensures values from -5 to -2, and 2 to 5, but not small values for both x and y between -2 and 2.
   }
   
   void display(){
@@ -150,7 +155,8 @@ class BallOne extends Ball {
   }
   
   void move(){
-    moveDirection();
+    //moveDirection();
+    moveZigZag();
   }
   
   private void moveDirection()
@@ -158,12 +164,33 @@ class BallOne extends Ball {
     if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
     widthIncrement *= -1;
     if(Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
-    heightIncrement *= -1;
-     
+    heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
     this.x += widthIncrement;
     this.y += heightIncrement;
     //this.display(); //this would let us trace the path of the ball, 
     //but I'd really need to see the ball moving, not trace it's path
+  }
+  
+  private void moveZigZag()
+  {
+    if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
+    widthIncrement *= -1;
+    if(Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
+    heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
+    if((frameCount + 5) % 10 == 0)
+    {
+      float holder = widthIncrement;
+      widthIncrement = heightIncrement * -1;
+      heightIncrement = holder;
+    }
+    else if(frameCount % 10 == 0)
+    {
+      float holder = heightIncrement;
+      heightIncrement = widthIncrement * -1;
+      widthIncrement = holder;
+    }
+    this.x += widthIncrement;
+    this.y += heightIncrement;
   }
 }
 
