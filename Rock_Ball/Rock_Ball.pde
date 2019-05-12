@@ -128,24 +128,6 @@ class Ball extends Thing implements Moveable {
     //this.x = newWidth;//testcode
     //this.y = newHeight;//testcode
   }
-  private void moveDirection()
-  {
-    widthIncrement = random(-3, 3);
-    heightIncrement = random(-3, 3);
-    for (int i = 0; i < 50; i ++)
-    {
-      if (this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25 ||
-        this.y + heightIncrement  > (height - 25) || this.y + heightIncrement < 25)
-      {
-        widthIncrement *= -1;
-        heightIncrement *= -1;
-      }
-      this.x += widthIncrement;
-      this.y += heightIncrement;
-      //this.display(); //this would let us trace the path of the ball, 
-      //but I'd really need to see the ball moving, not trace it's path
-    }
-  }
 }
 
 
