@@ -57,8 +57,8 @@ public class LivingRock extends Rock implements Moveable {
   double f =3;
   
   
-  LivingRock(float x, float y) {
-    super(x, y, img);
+  LivingRock(float x, float y, PImage z) {
+    super(x, y, z);
   }
   void move() {
     if (frameCount % 75 == 0)
@@ -345,7 +345,7 @@ void setup() {
 
     double t = Math.random() * 2;
     Rock r;
-    System.out.println(t + "jwdindkjndk");
+    //System.out.println(t + "jwdindkjndk");
     if (t > 1) {
       r = new Rock(50+random(width-100), 50+random(height-100), img);
     } else {
@@ -354,8 +354,14 @@ void setup() {
     thingsToDisplay.add(r);
     listOfCollideables.add(r);
   }
-
-  LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+     double s = Math.random() * 2;
+    LivingRock m;
+    //System.out.println(t + "jwdindkjndk");
+    if (s > 1) {
+      m = new LivingRock(50+random(width-100), 50+random(height-100), img);
+    } else {
+      m = new LivingRock(50+random(width-100), 50+random(height-100), lmg);
+    }
   thingsToDisplay.add(m);
   thingsToMove.add(m);
   listOfCollideables.add(m);
