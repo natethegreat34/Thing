@@ -51,15 +51,22 @@ class Rock extends Thing implements Collideable {
 public class LivingRock extends Rock implements Moveable {
   float xincrement;
   float yincrement;
+  float selector;
+  int rand;
   
   
   LivingRock(float x, float y) {
     super(x, y, img);
   }
   void move() {
-    int moveType = (int)random(0, 3);
-    if (moveType <= 1)randomMove();
-    else if (moveType <=2)diagonalMove();
+    if (frameCount % 75 == 0)
+    {
+      selector = (int)random(0, 2);
+    }
+    if (selector == 0)
+      randomMove();
+    else if (selector == 1)
+      diagonalMove();
     
   }
   
@@ -73,17 +80,30 @@ public class LivingRock extends Rock implements Moveable {
   }
   
   void diagonalMove(){
-     if ((frameCount + 5) % 10 == 0)
-    {
-      float holder = xincrement;
-      xincrement = yincrement * -1;
-    } else if (frameCount % 10 == 0)
-    {
-      float holder = yincrement;
-      yincrement = xincrement * -1;
+    if (frameCount % 50 == 0) rand = (int)random(0,4);
+    if (rand==0){
+      xincrement = random(0,5);
+      yincrement = -1 * (float)Math.sqrt(25 - xincrement*xincrement);
     }
-    x += xincrement;
-    y += yincrement;
+    if (rand==1){
+      xincrement = random(0,5);
+      yincrement = (float)Math.sqrt(25 - xincrement*xincrement);
+    }
+    if (rand==2){
+      yincrement = random(0,5);
+      xincrement = -1 * (float)Math.sqrt(25 - yincrement*yincrement);
+    }
+    if (rand==3){
+      yincrement = random(0,5);
+      xincrement = (float)Math.sqrt(25 - yincrement*yincrement);
+    }
+    
+    
+    if (x+xincrement<=width-25 && y+yincrement<=height-25 && x+xincrement>=25 && y+yincrement>=25) {
+       x += xincrement;
+       y += yincrement;
+     }
+
   }
   
 
