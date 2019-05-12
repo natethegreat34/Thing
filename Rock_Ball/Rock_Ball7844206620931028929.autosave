@@ -30,7 +30,16 @@ class Rock extends Thing implements Collideable {
   }
 
   boolean isTouching(Thing other) {
-    if (other instanceof Ball)
+    if (other instanceof Rock)
+    {
+      if ((this.x <= other.x + 50 && this.x >= other.x - 50) && (this.y <= other.y + 50 && this.y >= other.y - 50))
+      {
+        return true;
+      } else
+      {
+        return false;
+      }
+    } else if (other instanceof Ball)
     {
       if ((this.x <= other.x + 25 && this.x >= other.x - 75) && (this.y <= other.y + 25 && this.y >= other.y - 75))
       {
@@ -92,24 +101,25 @@ class Ball extends Thing implements Moveable {
     c = permanentc;
     else
     c = color(255,0,0);
-    s = createShape(ELLIPSE, x, y, 50, 50); //commentable
+    s = createShape(ELLIPSE, x, y, 50, 50);
     s.setFill(c);
-    shape(s);//commentable
-    //ellipse(x, y, 50, 50);//commentable
+    shape(s);
+    //ellipse(x, y, 50, 50);//testcode
   }
   void move() {
     /* ONE PERSON WRITE THIS */
     moveRandom();
-    //int selector = (int)random(0, 2);
-    //if (selector == 0)
-    //  moveRandom();
-    //if (selector == 1)
-    //  moveDirection();
+    int selector = (int)random(0, 2);
+    if (selector == 0)
+      moveRandom();
+    if (selector == 1)
+      moveDirection();
   }
   private void moveRandom() 
   {
-    widthIncrement = (float)Math.random() * 50 - 25;
-    heightIncrement = (float)Math.random() * 50 - 25;
+    
+    widthIncrement = random(-25,25);
+    heightIncrement = random(-25,25);//does not account for both increments being 0
     float newWidth = this.x + widthIncrement;
     float newHeight = this.y + heightIncrement;
     if (newWidth > (width - 25) || newWidth < 25 ||
@@ -141,8 +151,7 @@ class Ball extends Thing implements Moveable {
       }
       this.x += widthIncrement;
       this.y += heightIncrement;
-      //this.display(); //this would let us trace the path of the ball, 
-      //but I'd really need to see the ball moving, not trace it's path
+      //this.display(); //this would let us trace the path of the ball, but I'd really need to see the ball moving, not trace it's path
     }
   }
 }
