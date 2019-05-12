@@ -82,11 +82,11 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   boolean touchingRock;
-  PShape s;
-  color c;
-  color permanentc;
-  float xspeed;
-  float yspeed;
+  //PShape s;
+  //color c;
+  //color permanentc;
+  //float xspeed;
+  //float yspeed;
   float widthIncrement;
   float heightIncrement;
   Ball(float x, float y) {
@@ -97,14 +97,14 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
-    if(!touchingRock)
-    c = permanentc;
-    else
-    c = color(255,0,0);
-    //ellipse(x, y, 50, 50);//commentable
-    s = createShape(ELLIPSE, x, y, 50, 50); //commentable
-    s.setFill(c);
-    shape(s);//commentable
+    //if(!touchingRock)
+    //c = permanentc;
+    //else
+    //c = color(255,0,0);
+    //s = createShape(ELLIPSE, x, y, 50, 50); //commentable
+    //s.setFill(c);
+    //shape(s);//commentable
+    ellipse(x, y, 50, 50);//commentable
   }
   void move() {
     /* ONE PERSON WRITE THIS */
@@ -117,22 +117,25 @@ class Ball extends Thing implements Moveable {
   }
   private void moveRandom() 
   {
-    widthIncrement = random(-25, 25);
-    heightIncrement = random(-25, 25);
-    //does not account for both increments being 0
+    
+    widthIncrement = random(-25,25);
+    heightIncrement = random(-25,25);//does not account for both increments being 0
     float newWidth = this.x + widthIncrement;
     float newHeight = this.y + heightIncrement;
-
-    if (newWidth > (width - 25) || newWidth < 25 ||
-      newHeight  > (height - 25) || newHeight < 25)
-    {
-      this.x -= (widthIncrement);
-      this.y -= (heightIncrement);
-    } else
-    {
-      this.x = newWidth;
-      this.y = newHeight;
-    }
+    //if (newWidth > (width - 25) || newWidth < 25 ||
+    //  newHeight  > (height - 25) || newHeight < 25)
+    //{
+    //  this.x -= (widthIncrement);
+    //  this.y -= (heightIncrement);
+    //} else
+    //{
+    //  this.x = newWidth;
+    //  this.y = newHeight;
+    //}
+    widthIncrement = random(-1, 1);//testcode
+    heightIncrement = random(-1, 1);//testcode
+    this.x = newWidth;//testcode
+    this.y = newHeight;//testcode
   }
   private void moveDirection()
   {
