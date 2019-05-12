@@ -151,19 +151,19 @@ class Ball extends Thing implements Moveable {
 }
 
 
-//class BallOne extends Ball {
-//  Ball(float x, float y) {
-//    //x and y coordinates are the center of the ball
-//    super(x, y);
-//  }
-//}
+class BallOne extends Ball {
+  BallOne(float x, float y) {
+    //x and y coordinates are the center of the ball
+    super(x, y);
+  }
+}
 
-//class BallTwo extends Ball {
-//  Ball(float x, float y) {
-//    //x and y coordinates are the center of the ball
-//    super(x, y);
-//  }
-//}
+class BallTwo extends Ball {
+  BallTwo(float x, float y) {
+    //x and y coordinates are the center of the ball
+    super(x, y);
+  }
+}
 
 boolean su;
 ArrayList<Displayable> thingsToDisplay;
