@@ -26,3 +26,5 @@ Added a display method for BallOne, the other subclass of the Ball class. The di
 
 Derek:
 shortened out of bounds checking/colliding code, removed obsolete code, implemented private method moveDirection() for BallOne
+Added to force widthIncrement or heightIncrement to not be trivially small so movement is hard to be observed
+added randomDirectionMovement, and added a mechanism to randomly choose between those paths
