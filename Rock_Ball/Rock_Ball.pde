@@ -157,7 +157,7 @@ class BallOne extends Ball {
   }
 
   void move() {
-    if (frameCount % 75 == 0)
+    if (frameCount % 150 == 0)
     {
       selector = (int)random(0, 3);
     }
@@ -267,26 +267,31 @@ void setup() {
   thingsToMove = new ArrayList<Moveable>();
   listOfCollideables = new ArrayList<Collideable>(); // if collideable is touching ball, change the ball
   listOfBalls = new ArrayList<Ball>();
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 10; i++) {
     //Ball b = new Ball(50+random(width-100), 50+random(height-100));
     //thingsToDisplay.add(b);
     //thingsToMove.add(b);
     //listOfBalls.add(b);
 
-    BallOne b1 = new BallOne(50+random(width-100), 50+random(height-100));
-    thingsToDisplay.add(b1);
-    thingsToMove.add(b1);
-    listOfBalls.add(b1);
-
-    BallTwo b2 = new BallTwo(50+random(width-100), 50+random(height-100));
-    thingsToDisplay.add(b2);
-    thingsToMove.add(b2);
-    listOfBalls.add(b2);
+    if(i % 2 == 0)
+    {
+      BallOne b1 = new BallOne(50+random(width-100), 50+random(height-100));
+      thingsToDisplay.add(b1);
+      thingsToMove.add(b1);
+      listOfBalls.add(b1);
+    }
+    else
+    {
+      BallTwo b2 = new BallTwo(50+random(width-100), 50+random(height-100));
+      thingsToDisplay.add(b2);
+      thingsToMove.add(b2);
+      listOfBalls.add(b2);
+    }
 
 
     double t = Math.random() * 2;
     Rock r;
-    System.out.println(t + "jwdindkjndk");
+    //System.out.println(t + "jwdindkjndk");
     if (t > 1) {
       r = new Rock(50+random(width-100), 50+random(height-100), img);
     } else {
