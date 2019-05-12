@@ -113,8 +113,9 @@ class Ball extends Thing implements Moveable {
     heightIncrement = (float)Math.random() * 50 - 25;
     float newWidth = this.x + widthIncrement;
     float newHeight = this.y + heightIncrement;
-    if (newWidth > (width - 25) || newWidth < 25 ||
-      newHeight  > (height - 25) || newHeight < 25)
+    if((Math.abs(newWidth - width/2) > (width/2 - 25)) || Math.abs(newHeight - height/2) > (height/2 - 25))
+    //if (newWidth > (width - 25) || newWidth < 25 ||
+    //  newHeight  > (height - 25) || newHeight < 25)
     {
       this.x -= (widthIncrement);
       this.y -= (heightIncrement);
@@ -149,9 +150,9 @@ class BallOne extends Ball {
   
   private void moveDirection()
   {
-    if (this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25)
+    if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
     widthIncrement *= -1;
-    if(this.y + heightIncrement > (height - 25) || this.y + heightIncrement < 25)
+    if(Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
     heightIncrement *= -1;
      
     this.x += widthIncrement;
