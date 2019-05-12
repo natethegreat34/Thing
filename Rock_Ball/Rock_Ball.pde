@@ -153,30 +153,30 @@ class BallOne extends Ball {
   BallOne(float x, float y) {
     //x and y coordinates are the center of the ball
     super(x, y);
+    widthIncrement = random(-3, 3);
+    heightIncrement = random(-3, 3);
+  }
+  
+  void display(){
+    super.display();
   }
   
   void move(){
-    moveDirection;
+    moveDirection();
   }
+  
   private void moveDirection()
   {
-    widthIncrement = random(-3, 3);
-    heightIncrement = random(-3, 3);
-    float newWidth = this.x + widthIncrement;
-    float newHeight = this.y + heightIncrement;
-    for (int i = 0; i < 50; i ++)
-    {
-      if (newWidth > (width - 25) || newWidth < 25 ||
-      newHeight  > (height - 25) || newHeight < 25)
-      {
-        widthIncrement *= -1;
-        heightIncrement *= -1;
-      }
-      this.x += widthIncrement;
-      this.y += heightIncrement;
-      //this.display(); //this would let us trace the path of the ball, 
-      //but I'd really need to see the ball moving, not trace it's path
-    }
+    if (this.x + widthIncrement > (width - 25) || this.x + widthIncrement < 25)
+    widthIncrement *= -1;
+    if(this.y + heightIncrement > (height - 25) || this.y + heightIncrement < 25)
+    heightIncrement *= -1;
+     
+    this.x += widthIncrement;
+    this.y += heightIncrement;
+    //this.display(); //this would let us trace the path of the ball, 
+    //but I'd really need to see the ball moving, not trace it's path
+  }
 }
 
 class BallTwo extends Ball {
@@ -213,10 +213,15 @@ void setup() {
   listOfCollideables = new ArrayList<Collideable>(); // if collideable is touching ball, change the ball
   listOfBalls = new ArrayList<Ball>();
   for (int i = 0; i < 5; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100));
-    thingsToDisplay.add(b);
-    thingsToMove.add(b);
-    listOfBalls.add(b);
+    //Ball b = new Ball(50+random(width-100), 50+random(height-100));
+    //thingsToDisplay.add(b);
+    //thingsToMove.add(b);
+    //listOfBalls.add(b);
+    
+    BallOne b1 = new BallOne(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(b1);
+    thingsToMove.add(b1);
+    listOfBalls.add(b1);
     
     BallTwo b2 = new BallTwo(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b2);
