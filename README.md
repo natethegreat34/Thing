@@ -37,3 +37,6 @@ Code wasn't working so he fixed it.  ALso fixed the frame rate problem that was 
 
 James:
 Worked on the different movement methods for the living rock. Utilized random() for one method in which the rock will just move in sporatic movements in short little bursts. The other method the rock utilizes directions calculated by the pythagorean theorem and additionally can move in any direction.
+
+5/13/19
+Early Morning: Derek made bounce random for BallOne, attempted to make code unredundant for BallOne movement, took out print statements, merged the outside file with inner file.
