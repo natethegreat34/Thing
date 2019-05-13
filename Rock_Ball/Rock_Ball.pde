@@ -215,15 +215,19 @@ class BallOne extends Ball {
   }
 
   void move() {
-    if (frameCount % 150 == 0)
+    if (frameCount % 180 == 0)
     {
-      selector = (int)random(0, 3);
+      selector = (int)random(0, 4);
     }
     // if (selector == 0){} this means do nothing, originally was a method to make the ball move in a straight line, originally in the method moveDirection(), but it is obsolete
     if (selector == 1)
       moveZigZag();
     else if (selector == 2)
       moveRandomDirection();
+    else if (selector == 3)
+    {
+      moveLoop();
+    }
       
     int bounceIndicator = (int)(Math.random() * 2);
     if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
@@ -272,18 +276,17 @@ class BallOne extends Ball {
         }
       }
     }
-      
     this.x += widthIncrement;
     this.y += heightIncrement;
   }
 
   private void moveZigZag() {
-    if ((frameCount + 5) % 10 == 0)
+    if ((frameCount + 6) % 12 == 0)
     {
       float holder = widthIncrement;
       widthIncrement = heightIncrement * -1;
       heightIncrement = holder;
-    } else if (frameCount % 10 == 0)
+    } else if (frameCount % 12 == 0)
     {
       float holder = heightIncrement;
       heightIncrement = widthIncrement * -1;
@@ -308,8 +311,13 @@ class BallOne extends Ball {
     //this.y += heightIncrement;
   }
   
-  private void bounceRandom(float increment) {
-    
+  private void moveLoop() {
+    if (frameCount % 2 == 0 && frameCount % 10 != 0)
+    {
+      float holder = widthIncrement;
+      widthIncrement = heightIncrement * -1;
+      heightIncrement = holder;
+    }
   }
   
 }
