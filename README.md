@@ -33,7 +33,7 @@ Added to force widthIncrement or heightIncrement to not be trivially small so mo
 added randomDirectionMovement, and added a mechanism to randomly choose between those paths
 
 Nathan:
-Code wasn't working so he fixed it.  ALso fixed the frame rate problem that was cause because a line that was deleted befre made its way bak into the coded and so an image was being re loaded with every call to draw.  Put the finishing touches on the project so that it can work.
+Code wasn't working so he fixed it.  Also fixed the frame rate problem that was caused because a line that was deleted before made its way back into the code and so an image was being re loaded with every call to draw.  Helped fix the movement of the living rock. Put the finishing touches on the project so that it can work.
 
 James:
 Worked on the different movement methods for the living rock. Utilized random() for one method in which the rock will just move in sporatic movements in short little bursts. The other method the rock utilizes directions calculated by the pythagorean theorem and additionally can move in any direction.
@@ -41,3 +41,4 @@ Worked on the different movement methods for the living rock. Utilized random() 
 5/13/19
 Early Morning: Derek made bounce random for BallOne, attempted to make code unredundant for BallOne movement, took out print statements, merged the outside file with inner file.
 Added moveLoop() and moveLag() move methods for BallOne, did it largely for fun, and was not hard to code.
+
