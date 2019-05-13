@@ -49,17 +49,75 @@ class Rock extends Thing implements Collideable {
 }
 
 public class LivingRock extends Rock implements Moveable {
-  LivingRock(float x, float y) {
-    super(x, y, img);
+  float xincrement;
+  float yincrement;
+  float selector;
+  int rand;
+  double e = 3;
+  double f =3;
+  
+  
+  LivingRock(float x, float y, PImage z) {
+    super(x, y, z);
   }
   void move() {
-    float yincrement = random(-5, 5);
-    float xincrement = random(-5, 5);
-    /* ONE PERSON WRITE THIS */
-    if (x+xincrement<=width-25 && y+yincrement<=height-25) {
-      x+=xincrement;
-      y+=yincrement;
+    if (frameCount % 75 == 0)
+    {
+      selector = (int)random(0, 2);
     }
+    if (selector == 0)
+      randomMove();
+    else if (selector == 1)
+      diagonalMove();
+    
+  }
+  
+ void randomMove(){
+    double yincrement = Math.random()* 2 * f;
+    double xincrement = Math.random()* 2 * e;    
+    //System.out.println(width + " w " + "\n" + height + "h");
+    //System.out.println(x + " x " + "\n" + y + "y");
+        x+=xincrement;
+        y+=yincrement;
+    if (x+25 >= width && e == 3){
+      e = -3;
+    }
+    if (x-25 <= 0 && e == -3){
+      e = 3;
+    }
+    if (y + 25 >= height && f == 3){
+      f = -3;
+    }
+     if (y - 25 <= 0 && f == -3){
+      f = 3;
+    }
+ }
+  
+  void diagonalMove(){
+    if (frameCount % 50 == 0) rand = (int)random(0,4);
+    if (rand==0){
+      xincrement = random(0,5);
+      yincrement = -1 * (float)Math.sqrt(25 - xincrement*xincrement);
+    }
+    if (rand==1){
+      xincrement = random(0,5);
+      yincrement = (float)Math.sqrt(25 - xincrement*xincrement);
+    }
+    if (rand==2){
+      yincrement = random(0,5);
+      xincrement = -1 * (float)Math.sqrt(25 - yincrement*yincrement);
+    }
+    if (rand==3){
+      yincrement = random(0,5);
+      xincrement = (float)Math.sqrt(25 - yincrement*yincrement);
+    }
+    
+    
+    if (x+xincrement<=width-25 && y+yincrement<=height-25 && x+xincrement>=25 && y+yincrement>=25) {
+       x += xincrement;
+       y += yincrement;
+     }
+
   }
 
   void display() {
@@ -161,32 +219,65 @@ class BallOne extends Ball {
     {
       selector = (int)random(0, 3);
     }
-    if (selector == 0)
-      moveDirection();
-    else if (selector == 1)
+    // if (selector == 0){} this means do nothing, originally was a method to make the ball move in a straight line, originally in the method moveDirection(), but it is obsolete
+    if (selector == 1)
       moveZigZag();
     else if (selector == 2)
       moveRandomDirection();
-  }
-
-  private void moveDirection()
-  {
-    if (Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
-      widthIncrement *= -1;
+      
+    int bounceIndicator = (int)(Math.random() * 2);
+    if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
+    {
+      if(bounceIndicator == 0)
+      {
+        do
+        {
+          widthIncrement = random(-5, 5);
+        } 
+        while (5 - Math.abs(widthIncrement) > 3);
+        
+        if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
+        {
+          widthIncrement *= -1;
+        }
+      }
+      else
+      {
+        if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
+        {
+          widthIncrement *= -1;
+        }
+      } 
+    }
     if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
-      heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
+    {
+      if(bounceIndicator == 0)
+      {
+        do
+        {
+          heightIncrement = random(-5, 5);
+        } 
+        while (5 - Math.abs(heightIncrement) > 3);
+        
+        if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
+        {
+          heightIncrement *= -1;
+        }
+      }
+      else
+      {
+        if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
+        {
+          heightIncrement *= -1;
+        }
+      }
+    }
+      
     this.x += widthIncrement;
     this.y += heightIncrement;
-    //this.display(); //this would let us trace the path of the ball, 
-    //but I'd really need to see the ball moving, not trace it's path
   }
 
-  private void moveZigZag()
-  {
-    if (Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
-      widthIncrement *= -1;
-    if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
-      heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
+  private void moveZigZag() {
     if ((frameCount + 5) % 10 == 0)
     {
       float holder = widthIncrement;
@@ -198,18 +289,11 @@ class BallOne extends Ball {
       heightIncrement = widthIncrement * -1;
       widthIncrement = holder;
     }
-    this.x += widthIncrement;
-    this.y += heightIncrement;
+    //this.x += widthIncrement;
+    //this.y += heightIncrement;
   }
 
   private void moveRandomDirection() {
-    if (Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
-      widthIncrement *= -1;
-    if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
-      heightIncrement *= -1;//the four lines of code above were to check for out of bounds  
-    this.x += widthIncrement;
-    this.y += heightIncrement;
-
     if (frameCount % 20 == 0)
     {
       do
@@ -219,7 +303,15 @@ class BallOne extends Ball {
       }
       while (5 - Math.abs(widthIncrement) > 3 && 5 - Math.abs(heightIncrement) > 3);
     }
+    
+    //this.x += widthIncrement;
+    //this.y += heightIncrement;
   }
+  
+  private void bounceRandom(float increment) {
+    
+  }
+  
 }
 
 class BallTwo extends Ball {
@@ -292,26 +384,21 @@ void setup() {
   thingsToMove = new ArrayList<Moveable>();
   listOfCollideables = new ArrayList<Collideable>(); // if collideable is touching ball, change the ball
   listOfBalls = new ArrayList<Ball>();
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 5; i++) {
     //Ball b = new Ball(50+random(width-100), 50+random(height-100));
     //thingsToDisplay.add(b);
     //thingsToMove.add(b);
     //listOfBalls.add(b);
 
-    if(i % 2 == 0)
-    {
-      BallOne b1 = new BallOne(50+random(width-100), 50+random(height-100));
-      thingsToDisplay.add(b1);
-      thingsToMove.add(b1);
-      listOfBalls.add(b1);
-    }
-    else
-    {
-      BallTwo b2 = new BallTwo(50+random(width-100), 50+random(height-100));
-      thingsToDisplay.add(b2);
-      thingsToMove.add(b2);
-      listOfBalls.add(b2);
-    }
+    BallOne b1 = new BallOne(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(b1);
+    thingsToMove.add(b1);
+    listOfBalls.add(b1);
+
+    BallTwo b2 = new BallTwo(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(b2);
+    thingsToMove.add(b2);
+    listOfBalls.add(b2);
 
 
     double t = Math.random() * 2;
@@ -325,8 +412,14 @@ void setup() {
     thingsToDisplay.add(r);
     listOfCollideables.add(r);
   }
-
-  LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+     double s = Math.random() * 2;
+    LivingRock m;
+    //System.out.println(t + "jwdindkjndk");
+    if (s > 1) {
+      m = new LivingRock(50+random(width-100), 50+random(height-100), img);
+    } else {
+      m = new LivingRock(50+random(width-100), 50+random(height-100), lmg);
+    }
   thingsToDisplay.add(m);
   thingsToMove.add(m);
   listOfCollideables.add(m);
