@@ -55,8 +55,8 @@ public class LivingRock extends Rock implements Moveable {
   int rand;
   double e = 3;
   double f =3;
-  
-  
+
+
   LivingRock(float x, float y, PImage z) {
     super(x, y, z);
   }
@@ -69,55 +69,53 @@ public class LivingRock extends Rock implements Moveable {
       randomMove();
     else if (selector == 1)
       diagonalMove();
-    
   }
-  
- void randomMove(){
+
+  void randomMove() {
     double yincrement = Math.random()* 2 * f;
     double xincrement = Math.random()* 2 * e;    
     //System.out.println(width + " w " + "\n" + height + "h");
     //System.out.println(x + " x " + "\n" + y + "y");
-        x+=xincrement;
-        y+=yincrement;
-    if (x+25 >= width && e == 3){
+    x+=xincrement;
+    y+=yincrement;
+    if (x+25 >= width && e == 3) {
       e = -3;
     }
-    if (x-25 <= 0 && e == -3){
+    if (x-25 <= 0 && e == -3) {
       e = 3;
     }
-    if (y + 25 >= height && f == 3){
+    if (y + 25 >= height && f == 3) {
       f = -3;
     }
-     if (y - 25 <= 0 && f == -3){
+    if (y - 25 <= 0 && f == -3) {
       f = 3;
     }
- }
-  
-  void diagonalMove(){
-    if (frameCount % 50 == 0) rand = (int)random(0,4);
-    if (rand==0){
-      xincrement = random(0,5);
+  }
+
+  void diagonalMove() {
+    if (frameCount % 50 == 0) rand = (int)random(0, 4);
+    if (rand==0) {
+      xincrement = random(0, 5);
       yincrement = -1 * (float)Math.sqrt(25 - xincrement*xincrement);
     }
-    if (rand==1){
-      xincrement = random(0,5);
+    if (rand==1) {
+      xincrement = random(0, 5);
       yincrement = (float)Math.sqrt(25 - xincrement*xincrement);
     }
-    if (rand==2){
-      yincrement = random(0,5);
+    if (rand==2) {
+      yincrement = random(0, 5);
       xincrement = -1 * (float)Math.sqrt(25 - yincrement*yincrement);
     }
-    if (rand==3){
-      yincrement = random(0,5);
+    if (rand==3) {
+      yincrement = random(0, 5);
       xincrement = (float)Math.sqrt(25 - yincrement*yincrement);
     }
-    
-    
-    if (x+xincrement<=width-25 && y+yincrement<=height-25 && x+xincrement>=25 && y+yincrement>=25) {
-       x += xincrement;
-       y += yincrement;
-     }
 
+
+    if (x+xincrement<=width-25 && y+yincrement<=height-25 && x+xincrement>=25 && y+yincrement>=25) {
+      x += xincrement;
+      y += yincrement;
+    }
   }
 
   void display() {
@@ -228,47 +226,45 @@ class BallOne extends Ball {
       moveLoop();
     else if (selector == 4)
       moveLag();
-      
+
     int bounceIndicator = (int)(Math.random() * 2);
-    if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
+    if (Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25))
     {
-      if(bounceIndicator == 0)
+      if (bounceIndicator == 0)
       {
         do
         {
           widthIncrement = random(-5, 5);
         } 
         while (5 - Math.abs(widthIncrement) > 3);
-        
-        if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
+
+        if (Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
+        {
+          widthIncrement *= -1;
+        }
+      } else
+      {
+        if (Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
         {
           widthIncrement *= -1;
         }
       }
-      else
-      {
-        if(Math.abs(this.x + widthIncrement - width/2) > (width/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
-        {
-          widthIncrement *= -1;
-        }
-      } 
     }
     if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25))
     {
-      if(bounceIndicator == 0)
+      if (bounceIndicator == 0)
       {
         do
         {
           heightIncrement = random(-5, 5);
         } 
         while (5 - Math.abs(heightIncrement) > 3);
-        
+
         if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
         {
           heightIncrement *= -1;
         }
-      }
-      else
+      } else
       {
         if (Math.abs(this.y + heightIncrement - height/2) > (height/2 - 25)) //this step executes regardless, but it's that half the time the increment is randomized
         {
@@ -306,11 +302,11 @@ class BallOne extends Ball {
       }
       while (5 - Math.abs(widthIncrement) > 3 && 5 - Math.abs(heightIncrement) > 3);
     }
-    
+
     //this.x += widthIncrement;
     //this.y += heightIncrement;
   }
-  
+
   private void moveLoop() {
     if (frameCount % 2 == 0 && frameCount % 10 != 0)
     {
@@ -319,7 +315,7 @@ class BallOne extends Ball {
       heightIncrement = holder;
     }
   }
-  
+
   private void moveLag() {
     if (frameCount % 5 == 0 && frameCount % 15 != 0)
     {
@@ -337,24 +333,24 @@ class BallTwo extends Ball {
     super(x, y);
     permanentc = color(random(256), random(256), 0);
     int temp = (int)random(0, 4);
-    if (temp == 0){
+    if (temp == 0) {
       dx = 1;
       dy = 1;
     }
-    if (temp == 1){
+    if (temp == 1) {
       dx = -1;
       dy = 1;
     }
-    if (temp == 2){
+    if (temp == 2) {
       dx = 1;
       dy = -1;
     }
-    if (temp == 3){
+    if (temp == 3) {
       dx = -1;
       dy = -1;
     }
     widthIncrement = random(0, 10);
-    heightIncrement = random(0,10);
+    heightIncrement = random(0, 10);
   }
   void display() {
     if (!touchingRock)
@@ -371,11 +367,11 @@ class BallTwo extends Ball {
     this.x+=widthIncrement*dx;
     this.y+=heightIncrement*dy;
     if (this.x+widthIncrement*dx > width-15 || this.x+widthIncrement*dx < 15) {
-      widthIncrement = random(0,10);
+      widthIncrement = random(0, 10);
       dx *= -1;
     }
     if (this.y+heightIncrement*dy > height-15 || this.y+heightIncrement*dy < 15) {
-      heightIncrement = random(0,10);
+      heightIncrement = random(0, 10);
       dy *= -1;
     }
     this.x+=widthIncrement*dx;
@@ -427,14 +423,14 @@ void setup() {
     thingsToDisplay.add(r);
     listOfCollideables.add(r);
   }
-     double s = Math.random() * 2;
-    LivingRock m;
-    //System.out.println(t + "jwdindkjndk");
-    if (s > 1) {
-      m = new LivingRock(50+random(width-100), 50+random(height-100), img);
-    } else {
-      m = new LivingRock(50+random(width-100), 50+random(height-100), lmg);
-    }
+  double s = Math.random() * 2;
+  LivingRock m;
+  //System.out.println(t + "jwdindkjndk");
+  if (s > 1) {
+    m = new LivingRock(50+random(width-100), 50+random(height-100), img);
+  } else {
+    m = new LivingRock(50+random(width-100), 50+random(height-100), lmg);
+  }
   thingsToDisplay.add(m);
   thingsToMove.add(m);
   listOfCollideables.add(m);
