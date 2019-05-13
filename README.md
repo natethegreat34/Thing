@@ -40,3 +40,4 @@ Worked on the different movement methods for the living rock. Utilized random() 
 
 5/13/19
 Early Morning: Derek made bounce random for BallOne, attempted to make code unredundant for BallOne movement, took out print statements, merged the outside file with inner file.
+Added moveLoop() and moveLag() move methods for BallOne, did it largely for fun, and was not hard to code.
