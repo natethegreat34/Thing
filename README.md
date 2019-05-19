@@ -42,3 +42,6 @@ Worked on the different movement methods for the living rock. Utilized random() 
 Early Morning: Derek made bounce random for BallOne, attempted to make code unredundant for BallOne movement, took out print statements, merged the outside file with inner file.
 Added moveLoop() and moveLag() move methods for BallOne, did it largely for fun, and was not hard to code.
 
+5/18/19
+Derek ran Rock_Ball to help himself with final project, when he realized only five balls spawned. He had attempted to fix the problem earlier but the change was either deleted or not saved, it was lost. He has added the change now and pushed it.
+
