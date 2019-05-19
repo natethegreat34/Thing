@@ -414,14 +414,19 @@ void setup() {
 
     double t = Math.random() * 2;
     Rock r;
+    Rock s;
     //System.out.println(t + "jwdindkjndk");
     if (t > 1) {
       r = new Rock(50+random(width-100), 50+random(height-100), img);
+      s = new Rock(50+random(width-100), 50+random(height-100), img);
     } else {
       r = new Rock(50+random(width-100), 50+random(height-100), lmg);
+      s = new Rock(50+random(width-100), 50+random(height-100), lmg);
     }
     thingsToDisplay.add(r);
+    thingsToDisplay.add(s);
     listOfCollideables.add(r);
+    listOfCollideables.add(s);
   }
   double s = Math.random() * 2;
   LivingRock m;
